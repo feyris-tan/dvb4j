@@ -3,6 +3,7 @@ package moe.yo3explorer.dvb4j;
 import moe.yo3explorer.dvb4j.decoders.PATDecoder;
 import moe.yo3explorer.dvb4j.decoders.PMTDecoder;
 import moe.yo3explorer.dvb4j.decoders.PSIDecoder;
+import moe.yo3explorer.dvb4j.decoders.TDTDecoder;
 import moe.yo3explorer.dvb4j.model.PATEntry;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,13 +14,20 @@ public class DvbContext
 {
     public void pushPacket(DvbPacket dvbPacket)
     {
+        if (this.dvbReceiver == null)
+        {
+            throw new DvbException("A receiver must be set before processing packets!");
+        }
+
         packetNumber++;
         if (pids == null) {
             pids = new DvbPacket[8192];
             psiSections = new PsiSection[8192];
             interestingPids = new boolean[8192];
-            interestingPids[0] = true;
+            interestingPids[0] = true;      //PAT
+            interestingPids[0x14] = true;   //TDT
             attachPsiDecoder(new PATDecoder(this));
+            attachPsiDecoder(new TDTDecoder(this.dvbReceiver));
         }
 
         int pid = dvbPacket.getPid();

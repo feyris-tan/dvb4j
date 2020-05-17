@@ -8,6 +8,7 @@ import org.junit.experimental.categories.Category;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 
 @Category(AllTests.class)
 public class DvbTest implements DvbReceiver {
@@ -41,5 +42,10 @@ public class DvbTest implements DvbReceiver {
     @Override
     public void onNewPmtEntry(int pmtPid, @NotNull PMTEntry pmtEntry) {
         System.out.printf("PMT Entry:  PMT# %d, Type %d, Pid %d\n",pmtPid,pmtEntry.getType(),pmtEntry.getPid());
+    }
+
+    @Override
+    public void onTdtTime(@NotNull Date date) {
+        System.out.printf("TDT: %s\n",date.toString());
     }
 }
