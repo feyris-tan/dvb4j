@@ -1,10 +1,12 @@
 package moe.yo3explorer.dvb4j.model;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PMTEntry {
+public class PMTEntry
+{
     public PMTEntry(int type, int pid) {
         this.type = type;
         this.pid = pid;
@@ -13,13 +15,13 @@ public class PMTEntry {
 
     private int type;
     private int pid;
-    private ArrayList<PMTTag> tags;
+    private ArrayList<Descriptor> tags;
 
-    public void addTag(PMTTag pmtTag) {
+    public void addDescriptor(Descriptor pmtTag) {
         tags.add(pmtTag);
     }
 
-    public List<PMTTag> getTags()
+    public List<Descriptor> getTags()
     {
         return Collections.unmodifiableList(tags);
     }

@@ -1,9 +1,6 @@
 package moe.yo3explorer.dvb4j;
 
-import moe.yo3explorer.dvb4j.decoders.PATDecoder;
-import moe.yo3explorer.dvb4j.decoders.PMTDecoder;
-import moe.yo3explorer.dvb4j.decoders.PSIDecoder;
-import moe.yo3explorer.dvb4j.decoders.TDTDecoder;
+import moe.yo3explorer.dvb4j.decoders.*;
 import moe.yo3explorer.dvb4j.model.PATEntry;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,9 +22,11 @@ public class DvbContext
             psiSections = new PsiSection[8192];
             interestingPids = new boolean[8192];
             interestingPids[0] = true;      //PAT
+            interestingPids[1] = true;      //CAT
             interestingPids[0x14] = true;   //TDT
             attachPsiDecoder(new PATDecoder(this));
             attachPsiDecoder(new TDTDecoder(this.dvbReceiver));
+            attachPsiDecoder(new CATDecoder(this.dvbReceiver));
         }
 
         int pid = dvbPacket.getPid();

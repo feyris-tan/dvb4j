@@ -3,11 +3,12 @@ package moe.yo3explorer.dvb4j.decoders;
 import moe.yo3explorer.dvb4j.DvbContext;
 import moe.yo3explorer.dvb4j.DvbReceiver;
 import moe.yo3explorer.dvb4j.PsiSection;
+import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.PMTEntry;
-import moe.yo3explorer.dvb4j.model.PMTTag;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
 public class PMTDecoder implements PSIDecoder {
     public PMTDecoder(DvbContext context)
@@ -37,6 +38,7 @@ public class PMTDecoder implements PSIDecoder {
         lenA <<= 8;
         int lenB = payload.get() & 0xff;
         int len = lenA | lenB;
+        ArrayList<Descriptor> globalDescriptors = new ArrayList<>();
         while (len > 0)
         {
             int descriptorTag = payload.get() & 0xff;
@@ -45,6 +47,7 @@ public class PMTDecoder implements PSIDecoder {
             if (descriptorLength <= len) {
                 byte[] descriptorBuffer = new byte[descriptorLength];
                 payload.get(descriptorBuffer);
+                globalDescriptors.add(DescriptorDecoder.autoDecode(descriptorTag,getTableId(),descriptorBuffer));
             }
             len -= descriptorLength;
         }
@@ -72,13 +75,13 @@ public class PMTDecoder implements PSIDecoder {
                 {
                     byte[] tagContent = new byte[tagLength];
                     payload.get(tagContent);
-                    PMTTag pmtTag = new PMTTag(tag,tagContent);
-                    pmtEntry.addTag(pmtTag);
+                    pmtEntry.addDescriptor(DescriptorDecoder.autoDecode(tag,getTableId(),tagContent));
                 }
                 esLength -= tagLength;
             }
             if (!seenPids[pid])
             {
+                globalDescriptors.stream().forEach(x -> pmtEntry.addDescriptor(x));
                 seenPids[pid] = true;
                 DvbReceiver dvbReceiver = context.getDvbReceiver();
                 if (dvbReceiver != null)

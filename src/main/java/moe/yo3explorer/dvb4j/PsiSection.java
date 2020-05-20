@@ -193,7 +193,11 @@ public class PsiSection
 
     public ByteBuffer getPayload()
     {
-        byte[] bytes = Arrays.copyOfRange(getData(), getPayloadStart(), getPayloadEnd());
+        byte[] data = getData();
+        int plStart = getPayloadStart();
+        int plEnd = getPayloadEnd();
+
+        byte[] bytes = Arrays.copyOfRange(data,plStart,plEnd);
         ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
         return byteBuffer;
     }
