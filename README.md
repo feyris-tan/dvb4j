@@ -16,3 +16,12 @@ The basic strategy is to create a DvbContext, use setDvbReceiver to make it awar
 ## Why did you write this?
 
 Coding for fun - also lockdown boredom.
+
+## Useful resources:
+
+The information needed to write this software were gathered from:
+
+- DVB Identifiers: https://www.dvbservices.com/identifiers/index.php
+- ISO 13818-1
+- ETSI EN 300 468 
+- ITU-T H.222.0 Amendment 3

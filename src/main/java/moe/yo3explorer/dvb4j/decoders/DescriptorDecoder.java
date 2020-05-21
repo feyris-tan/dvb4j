@@ -21,6 +21,7 @@ public class DescriptorDecoder
         attachDescriptorType(Iso639LanguageDescriptor.class);
         attachDescriptorType(Ac3Descriptor.class);
         attachDescriptorType(CaDescriptor.class);
+        attachDescriptorType(ServiceDescriptor.class);
     }
     private Descriptor[] descriptors;
 

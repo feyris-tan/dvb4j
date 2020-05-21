@@ -2,6 +2,7 @@ package moe.yo3explorer.dvb4j;
 
 import moe.yo3explorer.dvb4j.model.PATEntry;
 import moe.yo3explorer.dvb4j.model.PMTEntry;
+import moe.yo3explorer.dvb4j.model.SDTEntry;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -47,5 +48,10 @@ public class DvbTest implements DvbReceiver {
     @Override
     public void onTdtTime(@NotNull Date date) {
         System.out.printf("TDT: %s\n",date.toString());
+    }
+
+    @Override
+    public void onSdtEntry(@NotNull SDTEntry sdtEntry) {
+        System.out.printf("SDT: %s\n",sdtEntry.toString());
     }
 }
