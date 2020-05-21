@@ -186,6 +186,9 @@ public class CaDescriptor implements Descriptor {
                 return "Dre-Crypt";
             case 0x092B:
                 return "News Datacom (???)";
+            case 0x0656:
+            case 0x06f8:
+                return "Irdeto";
             default:
                 return String.format("Unknown CA System (%04X)",caSystemId);
         }

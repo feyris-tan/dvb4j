@@ -29,6 +29,9 @@ public class DescriptorDecoder
         attachDescriptorType(BouquetNameDescriptor.class);
         attachDescriptorType(LinkageDescriptor.class);
         attachDescriptorType(ServiceListDescriptor.class);
+        attachDescriptorType(MultiplexBufferUtilizationDescriptor.class);
+        attachDescriptorType(StreamIdentifierDescriptor.class);
+        attachDescriptorType(VideoStreamDescriptor.class);
     }
     private Descriptor[] descriptors;
 
