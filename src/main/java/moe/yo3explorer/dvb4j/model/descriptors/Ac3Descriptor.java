@@ -4,10 +4,10 @@ import moe.yo3explorer.dvb4j.model.Descriptor;
 import org.jetbrains.annotations.NotNull;
 
 public class Ac3Descriptor implements Descriptor {
-    private Integer componentType;
-    private Integer bsidType;
-    private Integer mainId;
-    private Integer asvc;
+    protected Integer componentType;
+    protected Integer bsidType;
+    protected Integer mainId;
+    protected Integer asvc;
 
     @Override
     public int getTag() {

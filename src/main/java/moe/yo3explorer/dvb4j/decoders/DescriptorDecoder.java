@@ -22,6 +22,8 @@ public class DescriptorDecoder
         attachDescriptorType(Ac3Descriptor.class);
         attachDescriptorType(CaDescriptor.class);
         attachDescriptorType(ServiceDescriptor.class);
+        attachDescriptorType(EnhancedAc3Descriptor.class);
+        attachDescriptorType(Mpeg2AacAudioDescriptor.class);
     }
     private Descriptor[] descriptors;
 

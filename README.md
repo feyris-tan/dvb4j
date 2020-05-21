@@ -25,3 +25,4 @@ The information needed to write this software were gathered from:
 - ISO 13818-1
 - ETSI EN 300 468 
 - ITU-T H.222.0 Amendment 3
+- ITU-T H.222.0 Amendment 5

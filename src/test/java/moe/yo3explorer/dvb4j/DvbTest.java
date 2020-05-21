@@ -15,13 +15,21 @@ import java.util.Date;
 public class DvbTest implements DvbReceiver {
 
     @Test
-    public void dvbTest() throws IOException {
+    public void testTürksat10964v14170() throws IOException {
+        perform("E:\\10964_V_14170.ts", false);
+    }
 
+    @Test
+    public void testTürksat10980v12500() throws IOException {
+        perform("E:\\10980_V_12500.ts",false);
+    }
+
+    private void perform(String filename, boolean demux) throws IOException {
         DvbContext dvbContext = new DvbContext();
         dvbContext.setDvbReceiver(this);
         PidSplitter demuxer = new PidSplitter();
 
-        FileInputStream fis = new FileInputStream("E:\\10964_V_14170.ts");
+        FileInputStream fis = new FileInputStream(filename);
         byte[] buffer = new byte[188];
         while (fis.available() > 188)
         {
@@ -30,7 +38,8 @@ public class DvbTest implements DvbReceiver {
                 throw new IOException("incomplete read");
             DvbPacket dvbPacket = new DvbPacket(buffer);
             dvbContext.pushPacket(dvbPacket);
-            //demuxer.pushPacket(buffer,dvbPacket.getPid());
+            if (demux)
+                demuxer.pushPacket(buffer,dvbPacket.getPid());
         }
         demuxer.close();
     }
