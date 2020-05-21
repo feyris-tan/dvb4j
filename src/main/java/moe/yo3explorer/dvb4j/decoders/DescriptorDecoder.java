@@ -24,6 +24,11 @@ public class DescriptorDecoder
         attachDescriptorType(ServiceDescriptor.class);
         attachDescriptorType(EnhancedAc3Descriptor.class);
         attachDescriptorType(Mpeg2AacAudioDescriptor.class);
+        attachDescriptorType(PrivateDataSpecifierDescriptor.class);
+        attachDescriptorType(LocalTimeOffsetDescriptor.class);
+        attachDescriptorType(BouquetNameDescriptor.class);
+        attachDescriptorType(LinkageDescriptor.class);
+        attachDescriptorType(ServiceListDescriptor.class);
     }
     private Descriptor[] descriptors;
 
@@ -78,6 +83,13 @@ public class DescriptorDecoder
     {
         if (descriptorId > 0xff)
             throw new IllegalArgumentException("The highest possible descriptorId is 0xFF");
+
+        if (descriptorId >= 0x80 && descriptorId <= 0xFE)
+        {
+            UserDefinedDescriptor userDefinedDescriptor = new UserDefinedDescriptor(descriptorId);
+            userDefinedDescriptor.readFrom(data);
+            return userDefinedDescriptor;
+        }
 
         if (descriptors[descriptorId] != null)
         {

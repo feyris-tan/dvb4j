@@ -3,6 +3,7 @@ package moe.yo3explorer.dvb4j.model.descriptors;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 
 import java.nio.ByteBuffer;
+import java.util.Objects;
 
 public class CaDescriptor implements Descriptor {
     private int caSystemId;
@@ -183,6 +184,8 @@ public class CaDescriptor implements Descriptor {
             case 0x4AE1:
             case 0x7BE1:
                 return "Dre-Crypt";
+            case 0x092B:
+                return "News Datacom (???)";
             default:
                 return String.format("Unknown CA System (%04X)",caSystemId);
         }
@@ -194,5 +197,19 @@ public class CaDescriptor implements Descriptor {
                 "caSystemId=" + getHumanReadableCaSystemId() +
                 ", caPid=" + caPid +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CaDescriptor)) return false;
+        CaDescriptor that = (CaDescriptor) o;
+        return getCaSystemId() == that.getCaSystemId() &&
+                getCaPid() == that.getCaPid();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCaSystemId(), getCaPid());
     }
 }

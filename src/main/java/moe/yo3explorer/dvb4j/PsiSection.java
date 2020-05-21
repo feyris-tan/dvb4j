@@ -177,7 +177,8 @@ public class PsiSection
 
     public int getPayloadStart()
     {
-        if (getTableId() == 0x70)
+        int tableId = getTableId();
+        if (tableId == 0x70 || tableId == 0x73)
             return 3;
         return 8;
     }

@@ -23,13 +23,15 @@ public class DvbContext
             interestingPids = new boolean[8192];
             interestingPids[0] = true;      //PAT
             interestingPids[1] = true;      //CAT
-            interestingPids[0x11] = true;   //SDT
+            interestingPids[0x11] = true;   //SDT & BAT
             interestingPids[0x14] = true;   //TDT
             attachPsiDecoder(new PATDecoder(this));
             attachPsiDecoder(new TDTDecoder(this.dvbReceiver));
             attachPsiDecoder(new CATDecoder(this.dvbReceiver));
             attachPsiDecoder(new SDTDecoder(this.dvbReceiver));
             attachPsiDecoder(new SDTDecoder46(this.dvbReceiver));
+            attachPsiDecoder(new TOTDecoder(this.dvbReceiver));
+            attachPsiDecoder(new BATDecoder(this.dvbReceiver));
         }
 
         int pid = dvbPacket.getPid();

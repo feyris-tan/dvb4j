@@ -1,14 +1,14 @@
 package moe.yo3explorer.dvb4j;
 
-import moe.yo3explorer.dvb4j.model.PATEntry;
-import moe.yo3explorer.dvb4j.model.PMTEntry;
-import moe.yo3explorer.dvb4j.model.SDTEntry;
+import moe.yo3explorer.dvb4j.model.*;
+import moe.yo3explorer.dvb4j.model.descriptors.CaDescriptor;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Category(AllTests.class)
@@ -22,6 +22,11 @@ public class DvbTest implements DvbReceiver {
     @Test
     public void testTürksat10980v12500() throws IOException {
         perform("E:\\10980_V_12500.ts",false);
+    }
+
+    @Test
+    public void testTürksat11012v30000() throws IOException {
+        perform("E:\\11012_V_30000.ts",false);
     }
 
     private void perform(String filename, boolean demux) throws IOException {
@@ -62,5 +67,20 @@ public class DvbTest implements DvbReceiver {
     @Override
     public void onSdtEntry(@NotNull SDTEntry sdtEntry) {
         System.out.printf("SDT: %s\n",sdtEntry.toString());
+    }
+
+    @Override
+    public void onNewCaDescriptor(@NotNull CaDescriptor caDescriptor) {
+        System.out.printf("Found new CA Descriptor: SystemID: %04X, PID: %04X\n",caDescriptor.getCaSystemId(),caDescriptor.getCaPid());
+    }
+
+    @Override
+    public void onTotTime(@NotNull Date date, @NotNull ArrayList<Descriptor> descriptors) {
+        System.out.printf("TOT Time: %s (%d descriptors)\n",date.toString(),descriptors.size());
+    }
+
+    @Override
+    public void onBouquetAssociation(@NotNull BATEntry batEntry) {
+        System.out.printf("New BAT Entry: %s\n",batEntry.toString());
     }
 }

@@ -47,4 +47,15 @@ public final class DvbTimeConverter
         hexChars[1] = HEX_ARRAY[v & 0x0F];
         return new String(hexChars);
     }
+
+    public static int timeOffsetInJavaTime(@NotNull ByteBuffer payload)
+    {
+        int hours = Integer.parseInt(bytesToHex(payload.get()));
+        int minutes = Integer.parseInt(bytesToHex(payload.get()));
+
+        int result = hours * 3600;
+        result += minutes * 60;
+        result *= 1000;
+        return result;
+    }
 }
