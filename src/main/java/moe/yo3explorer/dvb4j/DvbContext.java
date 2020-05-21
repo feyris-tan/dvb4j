@@ -128,6 +128,7 @@ public class DvbContext
             {
                 //Nicht mehr genug da...
                 byte[] filler = new byte[available];
+                payload.get(filler);
                 psiSection.appendData(filler);
                 psiSection.i_need -= available;
                 available = 0;
