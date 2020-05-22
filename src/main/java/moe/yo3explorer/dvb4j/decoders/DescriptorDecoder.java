@@ -41,6 +41,7 @@ public class DescriptorDecoder
         attachDescriptorType(SatelliteDeliverySystemDescriptor.class);
         attachDescriptorType(ApplicationSignalingDescriptor.class);
         attachDescriptorType(TeletextDescriptor.class);
+        attachDescriptorType(S2SatelliteSystemDescriptor.class);
     }
     private Descriptor[] descriptors;
 
