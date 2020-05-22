@@ -39,6 +39,7 @@ public class DescriptorDecoder
         attachDescriptorType(CountryAvailablityDescriptor.class);
         attachDescriptorType(NetworkNameDescriptor.class);
         attachDescriptorType(SatelliteDeliverySystemDescriptor.class);
+        attachDescriptorType(ApplicationSignalingDescriptor.class);
     }
     private Descriptor[] descriptors;
 
