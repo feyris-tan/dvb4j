@@ -40,6 +40,7 @@ public class DescriptorDecoder
         attachDescriptorType(NetworkNameDescriptor.class);
         attachDescriptorType(SatelliteDeliverySystemDescriptor.class);
         attachDescriptorType(ApplicationSignalingDescriptor.class);
+        attachDescriptorType(TeletextDescriptor.class);
     }
     private Descriptor[] descriptors;
 
