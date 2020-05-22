@@ -2,6 +2,7 @@ package moe.yo3explorer.dvb4j;
 
 import moe.yo3explorer.dvb4j.model.*;
 import moe.yo3explorer.dvb4j.model.descriptors.CaDescriptor;
+import moe.yo3explorer.dvb4j.model.descriptors.SatelliteDeliverySystemDescriptor;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -10,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Category(AllTests.class)
 public class DvbTest implements DvbReceiver {
@@ -75,12 +77,17 @@ public class DvbTest implements DvbReceiver {
     }
 
     @Override
-    public void onTotTime(@NotNull Date date, @NotNull ArrayList<Descriptor> descriptors) {
+    public void onTotTime(@NotNull Date date, @NotNull List<Descriptor> descriptors) {
         System.out.printf("TOT Time: %s (%d descriptors)\n",date.toString(),descriptors.size());
     }
 
     @Override
     public void onBouquetAssociation(@NotNull BATEntry batEntry) {
         System.out.printf("New BAT Entry: %s\n",batEntry.toString());
+    }
+
+    @Override
+    public void onNetworkInformation(@NotNull SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors) {
+        System.out.println("NIT: " + satelliteDeliverySystemDescriptor.toString());
     }
 }

@@ -37,6 +37,8 @@ public class DescriptorDecoder
         attachDescriptorType(RegistrationDescriptor.class);
         attachDescriptorType(SubtitlingDescriptor.class);
         attachDescriptorType(CountryAvailablityDescriptor.class);
+        attachDescriptorType(NetworkNameDescriptor.class);
+        attachDescriptorType(SatelliteDeliverySystemDescriptor.class);
     }
     private Descriptor[] descriptors;
 

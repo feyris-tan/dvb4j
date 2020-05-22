@@ -32,6 +32,7 @@ public class DvbContext
             attachPsiDecoder(new SDTDecoder46(this.dvbReceiver));
             attachPsiDecoder(new TOTDecoder(this.dvbReceiver));
             attachPsiDecoder(new BATDecoder(this.dvbReceiver));
+            attachPsiDecoder(new NITDecoder(this.dvbReceiver));
         }
 
         int pid = dvbPacket.getPid();

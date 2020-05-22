@@ -4,7 +4,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.ByteBuffer;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -26,11 +25,11 @@ public final class DvbTimeConverter
         int m = m1 - 1 - k * 12;
 
         byte ho = payload.get();
-        int hour = Integer.parseInt(bytesToHex(ho));
+        int hour = Integer.parseInt(singleByteToHex(ho));
         byte mi = payload.get();
-        int minute = Integer.parseInt(bytesToHex(mi));
+        int minute = Integer.parseInt(singleByteToHex(mi));
         byte se = payload.get();
-        int second = Integer.parseInt(bytesToHex(se));
+        int second = Integer.parseInt(singleByteToHex(se));
 
         Date time = new GregorianCalendar(y, m - 1, d, hour, minute, second).getTime();
         return time;
@@ -40,7 +39,7 @@ public final class DvbTimeConverter
     private static final char[] HEX_ARRAY = "0123456789".toCharArray();
     @NotNull
     @Contract("_ -> new")
-    private static String bytesToHex(byte theByte) {
+    private static String singleByteToHex(byte theByte) {
         char[] hexChars = new char[2];
         int v = theByte & 0xFF;
         hexChars[0] = HEX_ARRAY[v >>> 4];
@@ -50,12 +49,26 @@ public final class DvbTimeConverter
 
     public static int timeOffsetInJavaTime(@NotNull ByteBuffer payload)
     {
-        int hours = Integer.parseInt(bytesToHex(payload.get()));
-        int minutes = Integer.parseInt(bytesToHex(payload.get()));
+        int hours = Integer.parseInt(singleByteToHex(payload.get()));
+        int minutes = Integer.parseInt(singleByteToHex(payload.get()));
 
         int result = hours * 3600;
         result += minutes * 60;
         result *= 1000;
         return result;
+    }
+
+    @NotNull
+    public static String bytesToHex(byte[] bytes) {
+        if (bytes == null)
+            return "";
+        // stolen from https://stackoverflow.com/a/9855338
+        char[] hexChars = new char[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+        return new String(hexChars);
     }
 }
