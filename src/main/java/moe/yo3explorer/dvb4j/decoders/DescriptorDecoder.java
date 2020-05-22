@@ -34,6 +34,7 @@ public class DescriptorDecoder
         attachDescriptorType(VideoStreamDescriptor.class);
         attachDescriptorType(AudioStreamDescriptor.class);
         attachDescriptorType(DsmCcAssociationDescriptor.class);
+        attachDescriptorType(RegistrationDescriptor.class);
     }
     private Descriptor[] descriptors;
 
