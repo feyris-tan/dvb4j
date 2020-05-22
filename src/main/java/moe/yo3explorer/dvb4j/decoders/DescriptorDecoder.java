@@ -32,6 +32,7 @@ public class DescriptorDecoder
         attachDescriptorType(MultiplexBufferUtilizationDescriptor.class);
         attachDescriptorType(StreamIdentifierDescriptor.class);
         attachDescriptorType(VideoStreamDescriptor.class);
+        attachDescriptorType(AudioStreamDescriptor.class);
     }
     private Descriptor[] descriptors;
 
