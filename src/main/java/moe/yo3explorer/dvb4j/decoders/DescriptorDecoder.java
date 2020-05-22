@@ -43,6 +43,7 @@ public class DescriptorDecoder
         attachDescriptorType(TeletextDescriptor.class);
         attachDescriptorType(S2SatelliteSystemDescriptor.class);
         attachDescriptorType(DsmCcCarouseldentifierDescriptor.class);
+        attachDescriptorType(DataBroadcastIdDescriptor.class);
     }
     private Descriptor[] descriptors;
 
