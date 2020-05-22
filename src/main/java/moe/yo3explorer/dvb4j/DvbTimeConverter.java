@@ -36,7 +36,7 @@ public final class DvbTimeConverter
     }
 
     //loosely based on https://stackoverflow.com/questions/9655181/how-to-convert-a-byte-array-to-a-hex-string-in-java
-    private static final char[] HEX_ARRAY = "0123456789".toCharArray();
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
     @NotNull
     @Contract("_ -> new")
     private static String singleByteToHex(byte theByte) {
