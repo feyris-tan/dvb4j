@@ -2,3 +2,4 @@
 /demoPids/
 /target/
 /pids/
+*.jar

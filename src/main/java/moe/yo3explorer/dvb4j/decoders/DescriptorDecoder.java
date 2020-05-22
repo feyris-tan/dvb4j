@@ -3,6 +3,7 @@ package moe.yo3explorer.dvb4j.decoders;
 import moe.yo3explorer.dvb4j.DvbException;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.descriptors.*;
+import moe.yo3explorer.dvb4j.model.extededDescriptors.SupplementaryAudioDescriptor;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,8 +45,11 @@ public class DescriptorDecoder
         attachDescriptorType(S2SatelliteSystemDescriptor.class);
         attachDescriptorType(DsmCcCarouseldentifierDescriptor.class);
         attachDescriptorType(DataBroadcastIdDescriptor.class);
+        attachDescriptorType(ExtensionDescriptor.class);
+        attachExtensionDescriptorType(SupplementaryAudioDescriptor.class);
     }
     private Descriptor[] descriptors;
+    private Descriptor[] extensionDescriptors;
 
     private static DescriptorDecoder instance;
     public static DescriptorDecoder getInstance()
@@ -75,6 +79,21 @@ public class DescriptorDecoder
             throw new DvbException("The Descriptor's ID is used more than once.");
         }
         descriptors[descriptor.getTag()] = descriptor;
+    }
+
+    @Contract(pure = true)
+    private void attachExtensionDescriptorType(@NotNull Class<? extends Descriptor> descriptorType)
+    {
+        if (extensionDescriptors == null) {
+            extensionDescriptors = new Descriptor[255];
+        }
+
+        Descriptor descriptor = createInstance(descriptorType);
+        if (extensionDescriptors[descriptor.getTag()] != null)
+        {
+            throw new DvbException("The Descriptor's ID is used more than once.");
+        }
+        extensionDescriptors[descriptor.getTag()] = descriptor;
     }
 
     @NotNull
@@ -111,6 +130,19 @@ public class DescriptorDecoder
             Class<? extends Descriptor> descriptorClass = descriptors[descriptorId].getClass();
             Descriptor instance = createInstance(descriptorClass);
             instance.readFrom(data);
+
+            if (descriptorId == 0x7F)
+            {
+                ExtensionDescriptor extensionDescriptor = (ExtensionDescriptor)instance;
+                descriptorClass = extensionDescriptors[extensionDescriptor.getTagExtension()].getClass();
+                if (descriptorClass == null)
+                {
+                    throw new DvbException(String.format("The extension descriptor %d (0x%02X) is not known.",extensionDescriptor.getTagExtension(),extensionDescriptor.getTagExtension()));
+                }
+                instance = createInstance(descriptorClass);
+                instance.readFrom(extensionDescriptor.getSelectorBytes());
+            }
+
             return instance;
         }
         throw new DvbException(String.format("The descriptor %d (0x%02X) is not known.",descriptorId,descriptorId));
