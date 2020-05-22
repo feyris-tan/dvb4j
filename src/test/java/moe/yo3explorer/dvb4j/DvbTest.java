@@ -46,6 +46,18 @@ public class DvbTest implements DvbReceiver {
         perform("E:\\11054_V_30000.ts",false);
     }
 
+    @Test
+    public void testTürksat11062v4820() throws IOException
+    {
+        perform("E:\\11062_V_4820.ts",false);
+    }
+
+    @Test
+    public void testAstra11949h22000() throws IOException
+    {
+        perform("E:\\11494_H_22000.ts",false);
+    }
+
     private void perform(String filename, boolean demux) throws IOException {
         DvbContext dvbContext = new DvbContext();
         dvbContext.setDvbReceiver(this);
