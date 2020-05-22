@@ -1,7 +1,5 @@
 package moe.yo3explorer.dvb4j.model.enums;
 
-import moe.yo3explorer.dvb4j.model.extededDescriptors.SupplementaryAudioDescriptor;
-
 public enum EditorialClassification
 {
     MAIN_AUDIO, AUDIO_DESCRIPTION_VISUALLY_IMPAIRED, CLEAN_AUDIO_HEARING_IMPAIRED, SPOKEN_SUBTITLES, DEPENDENT_PARAMETIC_DATA_STREAM, RESERVED, UNSPECIFIC_SUPPLEMENTARY_AUDIO, USER_DEFINED;

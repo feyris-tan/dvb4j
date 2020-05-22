@@ -3,7 +3,7 @@ package moe.yo3explorer.dvb4j.decoders;
 import moe.yo3explorer.dvb4j.DvbException;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.descriptors.*;
-import moe.yo3explorer.dvb4j.model.extededDescriptors.SupplementaryAudioDescriptor;
+import moe.yo3explorer.dvb4j.model.extendedDescriptors.SupplementaryAudioDescriptor;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 

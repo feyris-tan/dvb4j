@@ -1,4 +1,4 @@
-package moe.yo3explorer.dvb4j.model.extededDescriptors;
+package moe.yo3explorer.dvb4j.model.extendedDescriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.enums.EditorialClassification;
