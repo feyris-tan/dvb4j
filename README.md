@@ -26,3 +26,4 @@ The information needed to write this software were gathered from:
 - ETSI EN 300 468 
 - ITU-T H.222.0 Amendment 3
 - ITU-T H.222.0 Amendment 5
+- Descriptor list from https://en.wikipedia.org/wiki/Program-specific_information#Program_and_Elementary_Stream_Descriptor_Tags
