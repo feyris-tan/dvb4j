@@ -85,11 +85,13 @@ public class DvbPacket
         }
         if (adaptionField.splicingPointPresent != 0)
         {
-            byte splicingPoint = buffer.get();
+            adaptionField.splicingPoint = buffer.get();
         }
         if (adaptionField.transportPrivateDataPresent != 0)
         {
-            throw new RuntimeException();
+            adaptionField.transportPrivateDataLength = buffer.get() & 0xff;
+            adaptionField.transportPrivateData = new byte[adaptionField.transportPrivateDataLength];
+            buffer.get(adaptionField.transportPrivateData);
         }
         if (adaptionField.adaptionFieldExtensionPresent != 0)
         {

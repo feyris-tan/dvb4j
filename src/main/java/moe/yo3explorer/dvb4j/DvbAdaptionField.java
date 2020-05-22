@@ -14,4 +14,7 @@ class DvbAdaptionField
     public int transportPrivateDataPresent;
     public int adaptionFieldExtensionPresent;
     public long opcr;
+    public byte splicingPoint;
+    public int transportPrivateDataLength;
+    public byte[] transportPrivateData;
 }

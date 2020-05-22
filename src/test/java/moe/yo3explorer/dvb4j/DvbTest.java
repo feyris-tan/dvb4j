@@ -31,6 +31,21 @@ public class DvbTest implements DvbReceiver {
         perform("E:\\11012_V_30000.ts",false);
     }
 
+    @Test
+    public void testTürksat11045h4800() throws IOException {
+        perform("E:\\11045_H_4800.ts",false);
+    }
+
+    @Test
+    public void testTürksat11053h8000() throws IOException {
+        perform("E:\\11053_H_8000.ts",false);
+    }
+
+    @Test
+    public void testTürksat11054v30000() throws IOException {
+        perform("E:\\11054_V_30000.ts",false);
+    }
+
     private void perform(String filename, boolean demux) throws IOException {
         DvbContext dvbContext = new DvbContext();
         dvbContext.setDvbReceiver(this);
