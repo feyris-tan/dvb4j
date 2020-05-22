@@ -36,6 +36,7 @@ public class DescriptorDecoder
         attachDescriptorType(DsmCcAssociationDescriptor.class);
         attachDescriptorType(RegistrationDescriptor.class);
         attachDescriptorType(SubtitlingDescriptor.class);
+        attachDescriptorType(CountryAvailablityDescriptor.class);
     }
     private Descriptor[] descriptors;
 
