@@ -4,6 +4,6 @@ import moe.yo3explorer.dvb4j.PsiSection;
 
 public interface PSIDecoder
 {
-    int getTableId();
+    int[] getTableIds();
     void handlePsi(PsiSection psiSection);
 }

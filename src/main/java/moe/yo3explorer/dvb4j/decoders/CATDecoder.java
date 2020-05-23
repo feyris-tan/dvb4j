@@ -19,8 +19,8 @@ public class CATDecoder implements PSIDecoder
     private DvbReceiver receiver;
 
     @Override
-    public int getTableId() {
-        return 1;
+    public int[] getTableIds() {
+        return new int[] {1};
     }
 
     @Override
@@ -34,7 +34,7 @@ public class CATDecoder implements PSIDecoder
             {
                 byte[] descriptorBuffer = new byte[descriptorLength];
                 payload.get(descriptorBuffer);
-                Descriptor descriptor = DescriptorDecoder.autoDecode(descriptorId, getTableId(), descriptorBuffer);
+                Descriptor descriptor = DescriptorDecoder.autoDecode(descriptorId, 1, descriptorBuffer);
                 if (descriptor.getTag() == 9)
                 {
                     if (knownDescriptors == null)

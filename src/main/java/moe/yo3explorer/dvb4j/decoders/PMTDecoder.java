@@ -19,8 +19,8 @@ public class PMTDecoder implements PSIDecoder {
     DvbContext context;
 
     @Override
-    public int getTableId() {
-        return 2;
+    public int[] getTableIds() {
+        return new int[] {2};
     }
 
     @Override
@@ -47,7 +47,7 @@ public class PMTDecoder implements PSIDecoder {
             if (descriptorLength <= len) {
                 byte[] descriptorBuffer = new byte[descriptorLength];
                 payload.get(descriptorBuffer);
-                globalDescriptors.add(DescriptorDecoder.autoDecode(descriptorTag,getTableId(),descriptorBuffer));
+                globalDescriptors.add(DescriptorDecoder.autoDecode(descriptorTag,2,descriptorBuffer));
             }
             len -= descriptorLength;
         }
@@ -75,7 +75,7 @@ public class PMTDecoder implements PSIDecoder {
                 {
                     byte[] tagContent = new byte[tagLength];
                     payload.get(tagContent);
-                    pmtEntry.addDescriptor(DescriptorDecoder.autoDecode(tag,getTableId(),tagContent));
+                    pmtEntry.addDescriptor(DescriptorDecoder.autoDecode(tag,2,tagContent));
                 }
                 esLength -= tagLength;
             }

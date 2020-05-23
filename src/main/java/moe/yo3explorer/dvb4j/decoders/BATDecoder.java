@@ -24,8 +24,8 @@ public class BATDecoder implements PSIDecoder {
     private DvbReceiver dvbReceiver;
 
     @Override
-    public int getTableId() {
-        return 0x4A;
+    public int[] getTableIds() {
+        return new int[] {0x4A};
     }
 
     @Override
@@ -43,7 +43,7 @@ public class BATDecoder implements PSIDecoder {
             {
                 byte[] descriptorBuffer = new byte[descriptorLength];
                 payload.get(descriptorBuffer);
-                descriptors.add(DescriptorDecoder.autoDecode(descriptorId,getTableId(),descriptorBuffer));
+                descriptors.add(DescriptorDecoder.autoDecode(descriptorId,0x4A,descriptorBuffer));
                 descriptorsRemain -= descriptorLength;
             }
         }
@@ -66,7 +66,7 @@ public class BATDecoder implements PSIDecoder {
                 {
                     byte[] descriptorBuffer = new byte[descriptorLength];
                     payload.get(descriptorBuffer);
-                    tsDescriptors.add(DescriptorDecoder.autoDecode(descriptorId,getTableId(),descriptorBuffer));
+                    tsDescriptors.add(DescriptorDecoder.autoDecode(descriptorId,0x4A,descriptorBuffer));
                     tsLoopRemain -= descriptorBuffer.length;
                     transportDescriptorRemain -= descriptorBuffer.length;
                 }

@@ -18,14 +18,17 @@ public class NITDecoder implements PSIDecoder {
     private DvbReceiver dvbReceiver;
 
     @Override
-    public int getTableId() {
-        return 0x40;
+    public int[] getTableIds() {
+        return new int[] {0x40, 0x41};
     }
 
     @Override
     public void handlePsi(@NotNull PsiSection psiSection) {
+        int psiTableId = psiSection.getTableId();
+
         List<Descriptor> networkDescriptors = new ArrayList<>();
-        satelliteDeliverySystemDescriptors = new HashSet<>();
+        if (satelliteDeliverySystemDescriptors == null)
+            satelliteDeliverySystemDescriptors = new HashSet<>();
 
         ByteBuffer payload = psiSection.getPayload();
         int nwDescriptorsRemain = payload.getShort() & 0x0fff;
@@ -37,7 +40,7 @@ public class NITDecoder implements PSIDecoder {
 
             byte[] nwDescriptorBuffer = new byte[nwDescriptorLen];
             payload.get(nwDescriptorBuffer);
-            networkDescriptors.add(DescriptorDecoder.autoDecode(nwDescriptorId,getTableId(),nwDescriptorBuffer));
+            networkDescriptors.add(DescriptorDecoder.autoDecode(nwDescriptorId,psiTableId,nwDescriptorBuffer));
             nwDescriptorsRemain -= nwDescriptorLen;
         }
 
@@ -59,7 +62,7 @@ public class NITDecoder implements PSIDecoder {
 
                 byte[] tDescriptorBuffer = new byte[tDescriptorLen];
                 payload.get(tDescriptorBuffer);
-                tsDescriptors.add(DescriptorDecoder.autoDecode(tDescriptorId,getTableId(),tDescriptorBuffer));
+                tsDescriptors.add(DescriptorDecoder.autoDecode(tDescriptorId,psiTableId,tDescriptorBuffer));
                 transportDescriptorsRemain -= tDescriptorLen;
                 tsLoopRemain -= tDescriptorLen;
             }
@@ -69,7 +72,8 @@ public class NITDecoder implements PSIDecoder {
             {
                 SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor = first.get();
                 tsDescriptors.remove(satelliteDeliverySystemDescriptor);
-                dvbReceiver.onNetworkInformation(satelliteDeliverySystemDescriptor,tsDescriptors,networkDescriptors);
+                if (satelliteDeliverySystemDescriptors.add(satelliteDeliverySystemDescriptor))
+                    dvbReceiver.onNetworkInformation(satelliteDeliverySystemDescriptor,tsDescriptors,networkDescriptors);
             }
         }
     }

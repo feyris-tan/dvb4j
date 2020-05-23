@@ -29,11 +29,9 @@ public class DvbContext
             attachPsiDecoder(new TDTDecoder(this.dvbReceiver));
             attachPsiDecoder(new CATDecoder(this.dvbReceiver));
             attachPsiDecoder(new SDTDecoder(this.dvbReceiver));
-            attachPsiDecoder(new SDTDecoder46(this.dvbReceiver));
             attachPsiDecoder(new TOTDecoder(this.dvbReceiver));
             attachPsiDecoder(new BATDecoder(this.dvbReceiver));
             attachPsiDecoder(new NITDecoder(this.dvbReceiver));
-            attachPsiDecoder(new NITDecoder41(this.dvbReceiver));
         }
 
         int pid = dvbPacket.getPid();
@@ -169,14 +167,16 @@ public class DvbContext
         if (psiDecoders == null)
             psiDecoders = new PSIDecoder[255];
 
-        int tableId = psiDecoder.getTableId();
-        if (tableId > psiDecoders.length)
-            throw new DvbException(String.format("This PSI Decoder is broken. The maximum tableId is 255, however it is presented as %d",tableId));
+        int[] tableIds = psiDecoder.getTableIds();
+        for (int tableId : tableIds) {
+            if (tableId > psiDecoders.length)
+                throw new DvbException(String.format("This PSI Decoder is broken. The maximum tableId is 255, however it is presented as %d", tableId));
 
-        if (psiDecoders[tableId] != null)
-            throw new DvbException(String.format("There is already a decoder attached for table %d",tableId));
+            if (psiDecoders[tableId] != null)
+                throw new DvbException(String.format("There is already a decoder attached for table %d", tableId));
 
-        psiDecoders[tableId] = psiDecoder;
+            psiDecoders[tableId] = psiDecoder;
+        }
     }
 
     public void attachPatEntry(@NotNull PATEntry patEntry)

@@ -21,12 +21,13 @@ public class SDTDecoder implements PSIDecoder {
 
 
     @Override
-    public int getTableId() {
-        return 0x42;
+    public int[] getTableIds() {
+        return new int[] {0x42,0x46};
     }
 
     @Override
     public void handlePsi(@NotNull PsiSection psiSection) {
+        int psiTableId = psiSection.getTableId();
         ByteBuffer payload = psiSection.getPayload();
         int originalNetworkId = payload.getShort() & 0xffff;
         byte reservedFutureUsed = payload.get();
@@ -50,7 +51,7 @@ public class SDTDecoder implements PSIDecoder {
                 {
                     byte[] descriptorBuffer = new byte[descriptorLength];
                     payload.get(descriptorBuffer);
-                    descriptors.add(DescriptorDecoder.autoDecode(descriptorId,getTableId(),descriptorBuffer));
+                    descriptors.add(DescriptorDecoder.autoDecode(descriptorId,psiTableId,descriptorBuffer));
                     descriptorsLength -= descriptorLength;
                 }
             }

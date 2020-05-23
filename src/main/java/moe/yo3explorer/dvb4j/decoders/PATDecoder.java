@@ -19,8 +19,8 @@ public class PATDecoder implements PSIDecoder
     private DvbContext context;
 
     @Override
-    public int getTableId() {
-        return 0;
+    public int[] getTableIds() {
+        return new int[] { 0};
     }
 
     @Override

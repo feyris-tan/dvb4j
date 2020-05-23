@@ -19,8 +19,8 @@ public class TOTDecoder implements PSIDecoder {
     private DvbReceiver receiver;
 
     @Override
-    public int getTableId() {
-        return 0x73;
+    public int[] getTableIds() {
+        return new int[] {0x73};
     }
 
     @Override
@@ -37,7 +37,7 @@ public class TOTDecoder implements PSIDecoder {
 
             byte[] descriptorBuffer = new byte[descriptorLength];
             payload.get(descriptorBuffer);
-            descriptors.add(DescriptorDecoder.autoDecode(descriptorId,getTableId(),descriptorBuffer));
+            descriptors.add(DescriptorDecoder.autoDecode(descriptorId,0x73,descriptorBuffer));
             descriptorRemain -= descriptorLength;
         }
         receiver.onTotTime(date,descriptors);

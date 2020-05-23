@@ -21,8 +21,8 @@ public class TDTDecoder implements PSIDecoder
     private DvbReceiver receiver;
 
     @Override
-    public int getTableId() {
-        return 0x70;
+    public int[] getTableIds() {
+        return new int[] {0x70};
     }
 
     @Override
