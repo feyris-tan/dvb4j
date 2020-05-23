@@ -48,6 +48,7 @@ public class DescriptorDecoder
         attachDescriptorType(ExtensionDescriptor.class);
         attachExtensionDescriptorType(SupplementaryAudioDescriptor.class);
         attachDescriptorType(ExternalEsDescriptor.class);
+        attachDescriptorType(ShortEventDescriptor.class);
     }
     private Descriptor[] descriptors;
     private Descriptor[] extensionDescriptors;
