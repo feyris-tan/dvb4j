@@ -18,4 +18,5 @@ public interface DvbReceiver
     void onTotTime(Date date, List<Descriptor> descriptors);
     void onBouquetAssociation(BATEntry batEntry);
     void onNetworkInformation(SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors);
+    void onScheduledEvent(EITEvent eitEvent);
 }

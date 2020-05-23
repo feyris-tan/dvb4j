@@ -2,7 +2,23 @@ package moe.yo3explorer.dvb4j.model.enums;
 
 public enum ComponentType
 {
-    RESERVED, MPEG2_VIDEO_4_3_25HZ, MPEG2_VIDEO_16_9_25HZ_PAN, MPEG2_VIDEO_16_9_25HZ, MPEG2_VIDEO_4_3_30HZ, MPEG2_VIDEO_16_9_30HZ_PAN, MPEG2_VIDEO_16_9_30HZ, MPEG2_VIDEO_OVER_16_9_30HZ, MPEG2_HD_4_3_25HZ, MPEG2_HD_16_9_25HZ_PAN, MPEG2_HD_16_9_25HZ, MPEG2_HD_OVER_16_9_25HZ, MPEG2_HD_4_3_30HZ, MPEG2_HD_16_9_30HZ, MPEG2_HD_16_9_30HZ_PAN, MPEG2_HD_OVER_16_9_30HZ, USER_DEFINED, MP2_AUDIO_SINGLE_MONO, MP2_AUDIO_DUAL_MONO, MP2_AUDIO_STEREO, MP2_AUDIO_MULTICHANNEL, MP2_AUDIO_SURROUND, MP2_AUDIO_VISUALLY_IMPAIRED, MP2_AUDIO_HEARING_IMPAIRED, RECEIVER_MIX_SUPPLEMENTARY_AUDIO, MP2_AUDIO_RECEIVER_MIX_AUDIO_DESCRIPTION, MP2_AUDIO_BROADCAST_MIX_AUDIO_DESCRIPTION, EBU_TELETEXT_SUBTITLES, ASSOCIATED_EBU_TELETEXT, VBI_DATA, DVB_SUBTITLES_NO_ASPECT, DVB_SUBTITLES_4_3, DVB_SUBTITLES_16_9, DVB_SUBTITLES_2d21_1, DVB_SUBTITLES_HD, DVB_SUBTITLES_3D, DVB_SUBTITLES_NO_ASPECT_HEARING_IMPAIRED, DVB_SUBTITLES_4_3_HEARING_IMPAIRED, DVB_SUBTITLES_16_9_HEARING_IMPAIRED, DVB_SUBTITLES_2d21_1_HEARING_IMPAIRED, DVB_SUBTITLES_HD_HEARING_IMPAIRED, DVB_SUBTITLES_3D_HEARING_IMPAIRED, OPEN_SIGN_LANGUAGE, CLOSED_SIGN_LANGUAGE, SPATIAL_RESOLUTION_UPSCALED, VIDEO_SDR, VIDEO_HDR_REMAPPED, VIDEO_HDR_CONVERTED, VIDEO_STANDARD_FRAMERATE, VIDEO_HIGH_FRAMERATE, DEPENDENT_SAOC_DE;
+    RESERVED, MPEG2_VIDEO_4_3_25HZ, MPEG2_VIDEO_16_9_25HZ_PAN, MPEG2_VIDEO_16_9_25HZ, MPEG2_VIDEO_4_3_30HZ,
+    MPEG2_VIDEO_16_9_30HZ_PAN, MPEG2_VIDEO_16_9_30HZ, MPEG2_VIDEO_OVER_16_9_30HZ, MPEG2_HD_4_3_25HZ,
+    MPEG2_HD_16_9_25HZ_PAN, MPEG2_HD_16_9_25HZ, MPEG2_HD_OVER_16_9_25HZ, MPEG2_HD_4_3_30HZ, MPEG2_HD_16_9_30HZ,
+    MPEG2_HD_16_9_30HZ_PAN, MPEG2_HD_OVER_16_9_30HZ, USER_DEFINED, MP2_AUDIO_SINGLE_MONO, MP2_AUDIO_DUAL_MONO,
+    MP2_AUDIO_STEREO, MP2_AUDIO_MULTICHANNEL, MP2_AUDIO_SURROUND, MP2_AUDIO_VISUALLY_IMPAIRED,
+    MP2_AUDIO_HEARING_IMPAIRED, RECEIVER_MIX_SUPPLEMENTARY_AUDIO, MP2_AUDIO_RECEIVER_MIX_AUDIO_DESCRIPTION,
+    MP2_AUDIO_BROADCAST_MIX_AUDIO_DESCRIPTION, EBU_TELETEXT_SUBTITLES, ASSOCIATED_EBU_TELETEXT, VBI_DATA,
+    DVB_SUBTITLES_NO_ASPECT, DVB_SUBTITLES_4_3, DVB_SUBTITLES_16_9, DVB_SUBTITLES_2d21_1, DVB_SUBTITLES_HD,
+    DVB_SUBTITLES_3D, DVB_SUBTITLES_NO_ASPECT_HEARING_IMPAIRED, DVB_SUBTITLES_4_3_HEARING_IMPAIRED,
+    DVB_SUBTITLES_16_9_HEARING_IMPAIRED, DVB_SUBTITLES_2d21_1_HEARING_IMPAIRED, DVB_SUBTITLES_HD_HEARING_IMPAIRED,
+    DVB_SUBTITLES_3D_HEARING_IMPAIRED, OPEN_SIGN_LANGUAGE, CLOSED_SIGN_LANGUAGE, SPATIAL_RESOLUTION_UPSCALED, VIDEO_SDR,
+    VIDEO_HDR_REMAPPED, VIDEO_HDR_CONVERTED, VIDEO_STANDARD_FRAMERATE, VIDEO_HIGH_FRAMERATE, DEPENDENT_SAOC_DE,
+    MPEG2_VIDEO_OVER_16_9_25HZ, AC3_AUDIO, ENHANCED_AC3_AUDIO, H264_SD_4_3_25HZ, H264_SD_16_9_25HZ,
+    H264_SD_OVER_16_9_25HZ, H264_SD_4_3_30HZ, H264_SD_16_9_30HZ, H264_SD_OVER_16_9_30HZ, H264_HD_16_9_25HZ,
+    H264_HD_OVER_16_9_25HZ, H264_HD_16_9_30HZ, H264_HD_OVER_16_9_30HZ, H264_3D_SIDE_BY_SIDE_16_9_25HZ,
+    H264_3D_TOP_AND_BOTTOM_16_9_25HZ, H264_3D_TOP_AND_BOTTOM_16_9_30HZ, H264_3D_SIDE_BY_SIDE_16_9_30HZ,
+    H264_DEPENDENT_VIEW;
 
     public static ComponentType decode(byte streamContent, byte componentType)
     {
@@ -20,8 +36,10 @@ public enum ComponentType
                 return MPEG2_VIDEO_4_3_25HZ;
             else if (component_type == 0x02)
                 return MPEG2_VIDEO_16_9_25HZ_PAN;
-            else if (component_type == 0x04)
+            else if (component_type == 0x03)
                 return MPEG2_VIDEO_16_9_25HZ;
+            else if (component_type == 0x04)
+                return MPEG2_VIDEO_OVER_16_9_25HZ;
             else if (component_type == 0x05)
                 return MPEG2_VIDEO_4_3_30HZ;
             else if (component_type == 0x06)
@@ -157,6 +175,69 @@ public enum ComponentType
             else if (component_type == 0xFF)
                 return RESERVED;
         }
+        else if (stream_content == 0x04)
+        {
+            if (component_type >= 0x00 && component_type <= 0x7F)
+                return AC3_AUDIO;
+            else if (component_type <= 0x80 && component_type >= 0xFF)
+                return ENHANCED_AC3_AUDIO;
+        }
+        else if (stream_content == 0x05)
+        {
+            if (component_type == 0x00)
+                return RESERVED;
+            else if (component_type == 0x01)
+                return H264_SD_4_3_25HZ;
+            else if (component_type == 0x02)
+                return RESERVED;
+            else if (component_type == 0x03)
+                return H264_SD_16_9_25HZ;
+            else if (component_type == 0x04)
+                return H264_SD_OVER_16_9_25HZ;
+            else if (component_type == 0x05)
+                return H264_SD_4_3_30HZ;
+            else if (component_type == 0x06)
+                return RESERVED;
+            else if (component_type == 0x07)
+                return H264_SD_16_9_30HZ;
+            else if (component_type == 0x08)
+                return H264_SD_OVER_16_9_30HZ;
+            else if (component_type == 0x09 || component_type == 0x0A)
+                return RESERVED;
+            else if (component_type == 0x0B)
+                return H264_HD_16_9_25HZ;
+            else if (component_type == 0x0C)
+                return H264_HD_OVER_16_9_25HZ;
+            else if (component_type == 0x0D || component_type == 0x0E)
+                return RESERVED;
+            else if (component_type == 0x0F)
+                return H264_HD_16_9_30HZ;
+            else if (component_type == 0x10)
+                return H264_HD_OVER_16_9_30HZ;
+            else if (component_type >= 0x11 && component_type <= 0x7F)
+                return RESERVED;
+            else if (component_type == 0x80)
+                return H264_3D_SIDE_BY_SIDE_16_9_25HZ;
+            else if (component_type == 0x81)
+                return H264_3D_TOP_AND_BOTTOM_16_9_25HZ;
+            else if (component_type == 0x82)
+                return H264_3D_SIDE_BY_SIDE_16_9_30HZ;
+            else if (component_type == 0x83)
+                return H264_3D_TOP_AND_BOTTOM_16_9_30HZ;
+            else if (component_type == 0x84)
+                return H264_DEPENDENT_VIEW;
+            else if (component_type >= 0x85 && component_type <= 0xAF)
+                return RESERVED;
+            else if (component_type >= 0xB0 && component_type <= 0xFE)
+                return USER_DEFINED;
+            else if (component_type == 0xFF)
+                return RESERVED;
+        }
+        else if (stream_content >= 0x0C && stream_content <= 0x0F)
+        {
+            return USER_DEFINED;
+        }
+
 
         throw new RuntimeException("This component type is not implemented yet!");
     }

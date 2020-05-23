@@ -24,6 +24,7 @@ public class DvbContext
             interestingPids[0] = true;      //PAT
             interestingPids[1] = true;      //CAT
             interestingPids[0x11] = true;   //SDT & BAT
+            interestingPids[0x12] = true;   //EIT
             interestingPids[0x14] = true;   //TDT
             attachPsiDecoder(new PATDecoder(this));
             attachPsiDecoder(new TDTDecoder(this.dvbReceiver));
@@ -32,6 +33,7 @@ public class DvbContext
             attachPsiDecoder(new TOTDecoder(this.dvbReceiver));
             attachPsiDecoder(new BATDecoder(this.dvbReceiver));
             attachPsiDecoder(new NITDecoder(this.dvbReceiver));
+            attachPsiDecoder(new EITDecoder(this.dvbReceiver));
         }
 
         int pid = dvbPacket.getPid();
@@ -59,12 +61,14 @@ public class DvbContext
         if (!interestingPids[pid])
             return;
 
+        boolean psiJustStarted = false;
         if (psiSections[pid] == null)
         {
             if (dvbPacket.isPayloadUnitStart()) {
                 psiSections[pid] = new PsiSection();
                 psiSections[pid].i_need = 3;
                 psiSections[pid].headerComplete = false;
+                psiJustStarted = true;
             }
             else
             {
@@ -75,6 +79,14 @@ public class DvbContext
         PsiSection psiSection = psiSections[pid];
         ByteBuffer payload = dvbPacket.getPayload();
         int available = payload.limit();
+        if (psiJustStarted)
+        {
+            int startOffset = dvbPacket.getPayloadStartOffset();
+            if (startOffset > 0) {
+                payload.position(payload.position() + startOffset);
+                available -= startOffset;
+            }
+        }
         while (available > 0)
         {
             if (available > psiSection.i_need)
@@ -91,7 +103,6 @@ public class DvbContext
                     short sectionLength = ByteBuffer.wrap(psiSection.getData()).getShort(1);
                     sectionLength &= 0x0fff;
                     psiSection.i_need = sectionLength;
-                    //TODO: Max Länge überprüfen
                 }
                 else
                 {

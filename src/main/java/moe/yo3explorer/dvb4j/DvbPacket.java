@@ -32,8 +32,10 @@ public class DvbPacket
         continuity = ((anInt & 0xf));
 
         int payloadOffset = 4;
-        if (payloadUnitStart)
+        if (payloadUnitStart) {
+            payloadStartOffset = rawBytes[4] & 0xff;
             payloadOffset++;
+        }
 
         switch (adaptionFieldControl)
         {
@@ -111,6 +113,7 @@ public class DvbPacket
     private int tei;
     private int priority;
     private int tsc;
+    private int payloadStartOffset;
     private DvbAdaptionField dvbAdaptionField;
 
     public int getPid() {
@@ -135,6 +138,10 @@ public class DvbPacket
 
     public ByteBuffer getPayload() {
         return payload.slice();
+    }
+
+    public int getPayloadStartOffset() {
+        return payloadStartOffset;
     }
 }
 

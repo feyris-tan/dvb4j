@@ -202,4 +202,17 @@ public class PsiSection
         ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
         return byteBuffer;
     }
+
+    public int getServiceId()
+    {
+        if (!headerComplete)
+            throw new DvbException("Header is not yet complete!");
+
+        byte[] data = getData();
+        byte[] interesting = new byte[2];
+        interesting[0] = data[3];
+        interesting[1] = data[4];
+        int serviceId = ByteBuffer.wrap(interesting).getShort() & 0xffff;
+        return serviceId;
+    }
 }

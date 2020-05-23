@@ -2,7 +2,9 @@ package moe.yo3explorer.dvb4j;
 
 import moe.yo3explorer.dvb4j.model.*;
 import moe.yo3explorer.dvb4j.model.descriptors.CaDescriptor;
+import moe.yo3explorer.dvb4j.model.descriptors.ExtendedEventDescriptor;
 import moe.yo3explorer.dvb4j.model.descriptors.SatelliteDeliverySystemDescriptor;
+import moe.yo3explorer.dvb4j.model.descriptors.ShortEventDescriptor;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Category(AllTests.class)
 public class DvbTest implements DvbReceiver {
@@ -116,5 +119,22 @@ public class DvbTest implements DvbReceiver {
     @Override
     public void onNetworkInformation(@NotNull SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors) {
         System.out.println("NIT: " + satelliteDeliverySystemDescriptor.toString());
+    }
+
+    @Override
+    public void onScheduledEvent(@NotNull EITEvent eitEvent) {
+        Optional<String> firstShort = eitEvent.getDescriptorList().stream().filter(x -> x.getTag() == 0x4D).map(x -> ((ShortEventDescriptor) x).getEventName()).findFirst();
+        String name = firstShort.orElse(null);
+
+        if (name == null) {
+
+            Optional<String> firstExtended = eitEvent.getDescriptorList().stream().filter(x -> x.getTag() == 0x4E).map(x -> ((ExtendedEventDescriptor) x).getText()).findFirst();
+            name = firstExtended.orElse(null);
+        }
+
+        if (name == null)
+            name = "???";
+
+        System.out.printf("New EIT Event: (%s) \"%s\" \n",eitEvent,name);
     }
 }
