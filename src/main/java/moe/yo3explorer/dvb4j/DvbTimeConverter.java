@@ -71,4 +71,19 @@ public final class DvbTimeConverter
         }
         return new String(hexChars);
     }
+
+    public static long parseDuration(@NotNull ByteBuffer payload)
+    {
+        byte[] level1 = new byte[3];
+        payload.get(level1);
+        int hours = Integer.parseInt(singleByteToHex(level1[0]));
+        int minutes = Integer.parseInt(singleByteToHex(level1[1]));
+        int seconds = Integer.parseInt(singleByteToHex(level1[2]));
+
+        long result = 0;
+        result += (seconds * 1000);
+        result += ((minutes * 60) * 1000);
+        result += ((hours * 3600) * 1000);
+        return result;
+    }
 }
