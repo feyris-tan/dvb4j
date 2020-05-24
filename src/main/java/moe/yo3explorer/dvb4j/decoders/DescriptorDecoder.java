@@ -56,6 +56,7 @@ public class DescriptorDecoder
         attachDescriptorType(ParentalRatingDescriptor.class);
         attachDescriptorType(CaIdentifierDescriptor.class);
         attachDescriptorType(PrivateDataIndicatorDescriptor.class);
+        attachDescriptorType(TimeShiftedServiceDescriptor.class);
     }
 
     private Descriptor[] descriptors;
