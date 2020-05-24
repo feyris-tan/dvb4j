@@ -55,6 +55,7 @@ public class DescriptorDecoder
         attachDescriptorType(PdcDescriptor.class);
         attachDescriptorType(ParentalRatingDescriptor.class);
         attachDescriptorType(CaIdentifierDescriptor.class);
+        attachDescriptorType(PrivateDataIndicatorDescriptor.class);
     }
 
     private Descriptor[] descriptors;
