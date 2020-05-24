@@ -23,7 +23,7 @@ public class DvbPacket
         {
             throw new DvbException("invalid DVB packet!");
         }
-        tei = ((anInt & 0x800000)) >> 23;
+        tei = (((anInt & 0x800000)) >> 23) != 0;
         payloadUnitStart = (((anInt & 0x400000)) >> 22) != 0;
         priority = ((anInt & 0x200000)) >> 21;
         pid = ((anInt & 0x1fff00)) >> 8;
@@ -36,6 +36,9 @@ public class DvbPacket
             payloadStartOffset = rawBytes[4] & 0xff;
             payloadOffset++;
         }
+
+        if (tei)
+            adaptionFieldControl = 1;
 
         switch (adaptionFieldControl)
         {
@@ -59,6 +62,11 @@ public class DvbPacket
     {
         DvbAdaptionField adaptionField = new DvbAdaptionField();
         adaptionField.length = buffer.get() & 0xff;
+        if (adaptionField.length > 183)
+        {
+            tei = true;
+            return 1;
+        }
         if (adaptionField.length == 0)
             return 1;
 
@@ -97,7 +105,42 @@ public class DvbPacket
         }
         if (adaptionField.adaptionFieldExtensionPresent != 0)
         {
-            throw new RuntimeException();
+            byte extensionFlags1 = buffer.get();
+            boolean ltwFlag = (extensionFlags1 & 0x80) != 0;
+            boolean piecewiseRateFlag = (extensionFlags1 & 0x40) != 0;
+            boolean seamlessSpliceFlag = (extensionFlags1 & 0x20) != 0;
+
+            Boolean ltwValidFlag = null;
+            Integer ltwOffset = null;
+
+            if (ltwFlag)
+            {
+                short ltwRaw = buffer.getShort();
+                ltwValidFlag = (ltwRaw & 0x8000) != 0;
+                ltwOffset = (ltwRaw & 0x7fff);
+            }
+
+            Integer piecewiseRate = null;
+            if (piecewiseRateFlag)
+            {
+                int piecewiseRaw = buffer.get() & 0xff;
+                piecewiseRaw += (buffer.getShort() & 0xffff) >> 8;
+                piecewiseRaw = piecewiseRaw & 0x3fffff;
+                piecewiseRate = piecewiseRaw;
+            }
+
+            Integer spliceType = null;
+            Long dtsNextAccessUnit = null;
+            if (seamlessSpliceFlag)
+            {
+                byte spliceRawA = buffer.get();
+                spliceType = spliceRawA & 0xf0;
+
+                dtsNextAccessUnit = (long)(spliceRawA & 0x0f);
+                dtsNextAccessUnit += (((long)buffer.getInt() & 0xfffefffeL) >> 4);
+            }
+
+            dvbAdaptionFieldExtension = new DvbAdaptionFieldExtension(ltwFlag,piecewiseRateFlag,seamlessSpliceFlag,ltwValidFlag,ltwOffset,piecewiseRate,spliceType,dtsNextAccessUnit);
         }
 
         dvbAdaptionField = adaptionField;
@@ -110,11 +153,12 @@ public class DvbPacket
     private int continuity;
     private boolean payloadUnitStart;
     private int adaptionFieldControl;
-    private int tei;
+    private boolean tei;
     private int priority;
     private int tsc;
     private int payloadStartOffset;
     private DvbAdaptionField dvbAdaptionField;
+    private DvbAdaptionFieldExtension dvbAdaptionFieldExtension;
 
     public int getPid() {
         return pid;
@@ -142,6 +186,14 @@ public class DvbPacket
 
     public int getPayloadStartOffset() {
         return payloadStartOffset;
+    }
+
+    public DvbAdaptionFieldExtension getDvbAdaptionFieldExtension() {
+        return dvbAdaptionFieldExtension;
+    }
+
+    public boolean isTei() {
+        return tei;
     }
 }
 

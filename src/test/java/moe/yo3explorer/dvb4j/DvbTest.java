@@ -11,10 +11,7 @@ import org.junit.experimental.categories.Category;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Category(AllTests.class)
 public class DvbTest implements DvbReceiver {
@@ -56,9 +53,15 @@ public class DvbTest implements DvbReceiver {
     }
 
     @Test
-    public void testAstra11949h22000() throws IOException
+    public void testAstra11494h22000() throws IOException
     {
         perform("E:\\11494_H_22000.ts",false);
+    }
+
+    @Test
+    public void testHotbird11137h27500() throws IOException
+    {
+        perform("E:\\11137_H_27500.ts",false);
     }
 
     private void perform(String filename, boolean demux) throws IOException {
@@ -79,6 +82,7 @@ public class DvbTest implements DvbReceiver {
                 demuxer.pushPacket(buffer,dvbPacket.getPid());
         }
         demuxer.close();
+        printStatistics(dvbContext);
     }
 
     @Override
@@ -136,5 +140,15 @@ public class DvbTest implements DvbReceiver {
             name = "???";
 
         System.out.printf("New EIT Event: (%s) \"%s\" \n",eitEvent,name);
+    }
+
+    public void printStatistics(@NotNull DvbContext context)
+    {
+        int[] ints = context.listAvailablePids();
+        Arrays.sort(ints);
+        for (int i = 0; i < ints.length; i++)
+        {
+            System.out.printf("Available PID: %04X\n",ints[i]);
+        }
     }
 }
