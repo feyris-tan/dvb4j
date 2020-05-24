@@ -57,6 +57,7 @@ public class DescriptorDecoder
         attachDescriptorType(CaIdentifierDescriptor.class);
         attachDescriptorType(PrivateDataIndicatorDescriptor.class);
         attachDescriptorType(TimeShiftedServiceDescriptor.class);
+        attachDescriptorType(NvodReferenceDescriptor.class);
     }
 
     private Descriptor[] descriptors;
