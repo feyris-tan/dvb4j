@@ -18,7 +18,8 @@ public enum ComponentType
     H264_SD_OVER_16_9_25HZ, H264_SD_4_3_30HZ, H264_SD_16_9_30HZ, H264_SD_OVER_16_9_30HZ, H264_HD_16_9_25HZ,
     H264_HD_OVER_16_9_25HZ, H264_HD_16_9_30HZ, H264_HD_OVER_16_9_30HZ, H264_3D_SIDE_BY_SIDE_16_9_25HZ,
     H264_3D_TOP_AND_BOTTOM_16_9_25HZ, H264_3D_TOP_AND_BOTTOM_16_9_30HZ, H264_3D_SIDE_BY_SIDE_16_9_30HZ,
-    H264_DEPENDENT_VIEW;
+    H264_DEPENDENT_VIEW, HEVC_HD_VIDEO_50HZ, HEVC_MAIN10_HD_VIDEO_50HZ, HEVC_HD_VIDEO_60HZ, HEVC_MAIN10_HD_VIDEO_60HZ,
+    HEVC_4K_VIDEO;
 
     public static ComponentType decode(byte streamContent, byte componentType)
     {
@@ -232,6 +233,19 @@ public enum ComponentType
                 return USER_DEFINED;
             else if (component_type == 0xFF)
                 return RESERVED;
+        }
+        else if (stream_content == 0x09)
+        {
+            if (component_type == 0x00)
+                return HEVC_HD_VIDEO_50HZ;
+            else if (component_type == 0x01)
+                return HEVC_MAIN10_HD_VIDEO_50HZ;
+            else if (component_type == 0x02)
+                return HEVC_HD_VIDEO_60HZ;
+            else if (component_type == 0x03)
+                return HEVC_MAIN10_HD_VIDEO_60HZ;
+            else if (component_type == 0x04)
+                return HEVC_4K_VIDEO;
         }
         else if (stream_content >= 0x0C && stream_content <= 0x0F)
         {
