@@ -2,6 +2,7 @@ package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.enums.ServiceType;
+import moe.yo3explorer.dvb4j.text.UsedCharsets;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -33,7 +34,7 @@ public class ServiceDescriptor implements Descriptor {
         int serviceNameLength = wrap.get() & 0xff;
         byte[] serviceNameRaw = new byte[serviceNameLength];
         wrap.get(serviceNameRaw);
-        this.serviceName = new String(serviceNameRaw, StandardCharsets.US_ASCII);
+        this.serviceName = new String(serviceNameRaw, UsedCharsets.DVB);
     }
 
     public ServiceType getServiceType() {

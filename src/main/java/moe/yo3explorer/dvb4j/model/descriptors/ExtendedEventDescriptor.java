@@ -1,6 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
+import moe.yo3explorer.dvb4j.text.UsedCharsets;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -42,7 +43,7 @@ public class ExtendedEventDescriptor implements Descriptor {
 
             strBuffer = new byte[itemDescLen];
             wrap.get(strBuffer);
-            String itemDescription = new String(strBuffer,StandardCharsets.US_ASCII);
+            String itemDescription = new String(strBuffer, UsedCharsets.DVB);
             itemLenRemain -= itemDescLen;
 
             int itemLen = wrap.get() & 0xff;
@@ -50,7 +51,7 @@ public class ExtendedEventDescriptor implements Descriptor {
 
             strBuffer = new byte[itemLen];
             wrap.get(strBuffer);
-            String item = new String(strBuffer,StandardCharsets.US_ASCII);
+            String item = new String(strBuffer,UsedCharsets.DVB);
             itemLenRemain -= itemLen;
             items.put(itemDescription,item);
         }
@@ -59,7 +60,7 @@ public class ExtendedEventDescriptor implements Descriptor {
 
         strBuffer = new byte[textLen];
         wrap.get(strBuffer);
-        text = new String(strBuffer,StandardCharsets.US_ASCII);
+        text = new String(strBuffer,UsedCharsets.DVB);
     }
 
     public int getDescriptorNumber() {

@@ -1,6 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
+import moe.yo3explorer.dvb4j.text.UsedCharsets;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -17,13 +18,13 @@ public class ShortEventDescriptor implements Descriptor {
 
         byte[] raw = new byte[3];
         wrap.get(raw);
-        iso639languageCode = new String(raw, StandardCharsets.US_ASCII);
+        iso639languageCode = new String(raw, UsedCharsets.DVB);
 
         int eventNameLength = wrap.get() & 0xff;
 
         raw = new byte[eventNameLength];
         wrap.get(raw);
-        eventName = new String(raw, StandardCharsets.US_ASCII);
+        eventName = new String(raw, UsedCharsets.DVB);
 
         int textLength = wrap.get() & 0xff;
 
