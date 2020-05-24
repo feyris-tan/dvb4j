@@ -100,8 +100,11 @@ public class DvbPacket
         if (adaptionField.transportPrivateDataPresent != 0)
         {
             adaptionField.transportPrivateDataLength = buffer.get() & 0xff;
-            adaptionField.transportPrivateData = new byte[adaptionField.transportPrivateDataLength];
-            buffer.get(adaptionField.transportPrivateData);
+            int maxLen = buffer.limit() - buffer.position();
+            if (adaptionField.transportPrivateDataLength <= maxLen) {
+                adaptionField.transportPrivateData = new byte[adaptionField.transportPrivateDataLength];
+                buffer.get(adaptionField.transportPrivateData);
+            }
         }
         if (adaptionField.adaptionFieldExtensionPresent != 0)
         {

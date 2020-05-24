@@ -19,4 +19,5 @@ public interface DvbReceiver
     void onBouquetAssociation(BATEntry batEntry);
     void onNetworkInformation(SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors);
     void onScheduledEvent(EITEvent eitEvent);
+    void onPacketLoss(int pid, int expectedContinuity, int actualContinuity);
 }

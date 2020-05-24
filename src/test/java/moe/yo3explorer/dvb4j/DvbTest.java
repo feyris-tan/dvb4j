@@ -57,11 +57,16 @@ public class DvbTest implements DvbReceiver {
     {
         perform("E:\\11494_H_22000.ts",false);
     }
-
     @Test
     public void testHotbird11137h27500() throws IOException
     {
         perform("E:\\11137_H_27500.ts",false);
+    }
+
+    @Test
+    public void testAstra28_10773h22000() throws IOException
+    {
+        perform("E:\\10773_H_22000.ts",false);
     }
 
     private void perform(String filename, boolean demux) throws IOException {
@@ -140,6 +145,11 @@ public class DvbTest implements DvbReceiver {
             name = "???";
 
         System.out.printf("New EIT Event: (%s) \"%s\" \n",eitEvent,name);
+    }
+
+    @Override
+    public void onPacketLoss(int pid, int expectedContinuity, int actualContinuity) {
+        System.out.printf("Detected Packet Loss on PID %04X, (expected %d, got %d)\n",pid,expectedContinuity,actualContinuity);
     }
 
     public void printStatistics(@NotNull DvbContext context)

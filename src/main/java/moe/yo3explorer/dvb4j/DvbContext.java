@@ -45,13 +45,16 @@ public class DvbContext
         {
             int oldContinuity = pids[pid].getContinuity();
             int newContinuity = dvbPacket.getContinuity();
-            if (newContinuity == (oldContinuity + 1) || (oldContinuity == 15 && newContinuity == 0) || pid == 8191 || !dvbPacket.isPayloadFlagSet())
+            if (newContinuity == (oldContinuity + 1) || (oldContinuity == 15 && newContinuity == 0) || pid == 8191 || !dvbPacket.isPayloadFlagSet() || !interestingPids[pid])
             {
                 pids[pid] = dvbPacket;
             }
             else
             {
-                throw new DvbException(String.format("TS continuity error in PID %d, excepted %d got %d",pid,oldContinuity + 1,newContinuity));
+                pids[pid] = null;
+                psiSections[pid] = null;
+                dvbReceiver.onPacketLoss(pid,oldContinuity +1, newContinuity);
+                return;
             }
         }
 
