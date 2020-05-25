@@ -13,14 +13,16 @@ public class SDTEntry {
     private final boolean eitSchedule;
     private final boolean eitPresentFollowing;
     private final RunningStatus runningStatus;
+    private final int tsId;
     private final boolean freeCaMode;
     private final List<Descriptor> descriptors;
     private final int originalNetworkId;
 
-    public SDTEntry(int serviceId, boolean eitScheduleFlag, boolean eitPresentFollowingFlag, int runningStatus, boolean freeCaMode, ArrayList<Descriptor> descriptors, int originalNetworkId) {
+    public SDTEntry(int serviceId, boolean eitScheduleFlag, boolean eitPresentFollowingFlag, int runningStatus, boolean freeCaMode, ArrayList<Descriptor> descriptors, int originalNetworkId, int tsId) {
         this.serviceId = serviceId;
         this.eitSchedule = eitScheduleFlag;
         this.eitPresentFollowing = eitPresentFollowingFlag;
+        this.tsId = tsId;
         switch (runningStatus)
         {
             case 0:
@@ -52,6 +54,7 @@ public class SDTEntry {
         this.descriptors = Collections.unmodifiableList(descriptors);
         this.originalNetworkId = originalNetworkId;
     }
+
 
     public String getChannelName()
     {
@@ -85,6 +88,10 @@ public class SDTEntry {
 
     public int getOriginalNetworkId() {
         return originalNetworkId;
+    }
+
+    public int getTsId() {
+        return tsId;
     }
 
     @Override

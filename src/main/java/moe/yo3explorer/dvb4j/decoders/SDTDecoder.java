@@ -27,6 +27,9 @@ public class SDTDecoder implements PSIDecoder {
 
     @Override
     public void handlePsi(@NotNull PsiSection psiSection) {
+        ByteBuffer psiRawWrap = ByteBuffer.wrap(psiSection.getData());
+        int tsId = psiRawWrap.getShort(3);
+
         int psiTableId = psiSection.getTableId();
         ByteBuffer payload = psiSection.getPayload();
         int originalNetworkId = payload.getShort() & 0xffff;
@@ -57,7 +60,7 @@ public class SDTDecoder implements PSIDecoder {
             }
             if (!foundServices[serviceId])
             {
-                SDTEntry sdtEntry = new SDTEntry(serviceId,eitScheduleFlag,eitPresentFollowingFlag, runningStatus,freeCaMode,descriptors,originalNetworkId);
+                SDTEntry sdtEntry = new SDTEntry(serviceId,eitScheduleFlag,eitPresentFollowingFlag, runningStatus,freeCaMode,descriptors,originalNetworkId,tsId);
                 dvbReceiver.onSdtEntry(sdtEntry);
                 foundServices[serviceId] = true;
             }
