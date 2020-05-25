@@ -59,6 +59,34 @@ public class SDTEntry {
         return first.orElse("???");
     }
 
+    public int getServiceId() {
+        return serviceId;
+    }
+
+    public boolean isEitSchedule() {
+        return eitSchedule;
+    }
+
+    public boolean isEitPresentFollowing() {
+        return eitPresentFollowing;
+    }
+
+    public RunningStatus getRunningStatus() {
+        return runningStatus;
+    }
+
+    public boolean isFreeCaMode() {
+        return freeCaMode;
+    }
+
+    public List<Descriptor> getDescriptors() {
+        return descriptors;
+    }
+
+    public int getOriginalNetworkId() {
+        return originalNetworkId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SDTEntry{");

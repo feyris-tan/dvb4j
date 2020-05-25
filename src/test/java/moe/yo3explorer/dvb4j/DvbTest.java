@@ -15,58 +15,10 @@ import java.util.*;
 
 @Category(AllTests.class)
 public class DvbTest implements DvbReceiver {
-
-    @Test
-    public void testTürksat10964v14170() throws IOException {
-        perform("E:\\10964_V_14170.ts", false);
-    }
-
-    @Test
-    public void testTürksat10980v12500() throws IOException {
-        perform("E:\\10980_V_12500.ts",false);
-    }
-
-    @Test
-    public void testTürksat11012v30000() throws IOException {
-        perform("E:\\11012_V_30000.ts",false);
-    }
-
-    @Test
-    public void testTürksat11045h4800() throws IOException {
-        perform("E:\\11045_H_4800.ts",false);
-    }
-
-    @Test
-    public void testTürksat11053h8000() throws IOException {
-        perform("E:\\11053_H_8000.ts",false);
-    }
-
-    @Test
-    public void testTürksat11054v30000() throws IOException {
-        perform("E:\\11054_V_30000.ts",false);
-    }
-
-    @Test
-    public void testTürksat11062v4820() throws IOException
-    {
-        perform("E:\\11062_V_4820.ts",false);
-    }
-
     @Test
     public void testAstra11494h22000() throws IOException
     {
         perform("E:\\11494_H_22000.ts",false);
-    }
-    @Test
-    public void testHotbird11137h27500() throws IOException
-    {
-        perform("E:\\11137_H_27500.ts",false);
-    }
-
-    @Test
-    public void testAstra28_10773h22000() throws IOException
-    {
-        perform("E:\\10773_H_22000.ts",false);
     }
 
     private void perform(String filename, boolean demux) throws IOException {

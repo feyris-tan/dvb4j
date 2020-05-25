@@ -78,6 +78,12 @@ public class DescriptorDecoder
         return getInstance().decode(descriptorId,tableId,data);
     }
 
+    public static int getTag(Class<? extends Descriptor> descriptorClass)
+    {
+        Descriptor descriptor = getInstance().createInstance(descriptorClass);
+        return descriptor.getTag();
+    }
+
     @Contract(pure = true)
     private void attachDescriptorType(@NotNull Class<? extends Descriptor> descriptorType)
     {
