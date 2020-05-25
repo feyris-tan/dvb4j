@@ -78,7 +78,7 @@ public class DvbTest implements DvbReceiver {
     }
 
     @Override
-    public void onNetworkInformation(@NotNull SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors) {
+    public void onNetworkInformation(@NotNull SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors, NITMetadata nitMetadata) {
         System.out.println("NIT: " + satelliteDeliverySystemDescriptor.toString());
     }
 

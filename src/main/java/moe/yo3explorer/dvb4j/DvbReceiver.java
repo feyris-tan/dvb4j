@@ -4,7 +4,6 @@ import moe.yo3explorer.dvb4j.model.*;
 import moe.yo3explorer.dvb4j.model.descriptors.CaDescriptor;
 import moe.yo3explorer.dvb4j.model.descriptors.SatelliteDeliverySystemDescriptor;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public interface DvbReceiver
     void onNewCaDescriptor(CaDescriptor caDescriptor);
     void onTotTime(Date date, List<Descriptor> descriptors);
     void onBouquetAssociation(BATEntry batEntry);
-    void onNetworkInformation(SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors);
+    void onNetworkInformation(SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors, NITMetadata nitMetadata);
     void onScheduledEvent(EITEvent eitEvent);
     void onPacketLoss(int pid, int expectedContinuity, int actualContinuity);
 }

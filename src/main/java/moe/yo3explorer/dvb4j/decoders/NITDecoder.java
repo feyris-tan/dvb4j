@@ -3,6 +3,7 @@ package moe.yo3explorer.dvb4j.decoders;
 import moe.yo3explorer.dvb4j.DvbReceiver;
 import moe.yo3explorer.dvb4j.PsiSection;
 import moe.yo3explorer.dvb4j.model.Descriptor;
+import moe.yo3explorer.dvb4j.model.NITMetadata;
 import moe.yo3explorer.dvb4j.model.descriptors.SatelliteDeliverySystemDescriptor;
 import org.jetbrains.annotations.NotNull;
 
@@ -73,7 +74,7 @@ public class NITDecoder implements PSIDecoder {
                 SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor = first.get();
                 tsDescriptors.remove(satelliteDeliverySystemDescriptor);
                 if (satelliteDeliverySystemDescriptors.add(satelliteDeliverySystemDescriptor))
-                    dvbReceiver.onNetworkInformation(satelliteDeliverySystemDescriptor,tsDescriptors,networkDescriptors);
+                    dvbReceiver.onNetworkInformation(satelliteDeliverySystemDescriptor,tsDescriptors,networkDescriptors, new NITMetadata(transportStreamId,originalNetworkId));
             }
         }
     }
