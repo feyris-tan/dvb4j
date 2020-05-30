@@ -26,6 +26,7 @@ public class DvbCharsetDecoder extends CharsetDecoder {
     @Override
     protected CoderResult decodeLoop(@NotNull ByteBuffer in, CharBuffer out) {
         int length = in.limit() - in.position();
+        int dirtyLength = length;
         byte[] dirtyBuffer = new byte[length];
         in.get(dirtyBuffer);
 
@@ -112,10 +113,11 @@ public class DvbCharsetDecoder extends CharsetDecoder {
             }
 
             if ((dirtyBuffer[dirtyPtr] & 0xff) == 0xe0) {
-                if ((dirtyBuffer[dirtyPtr + 1] & 0xff) >= 0x80 && (dirtyBuffer[dirtyPtr + 1] & 0xff) <= 0x9F) {
-                    dirtyPtr++;
-                    continue;
-                }
+                if (dirtyPtr != dirtyLength - 1)
+                    if ((dirtyBuffer[dirtyPtr + 1] & 0xff) >= 0x80 && (dirtyBuffer[dirtyPtr + 1] & 0xff) <= 0x9F) {
+                        dirtyPtr++;
+                        continue;
+                    }
             }
 
             cleanBuffer[cleanPtr++] = dirtyBuffer[dirtyPtr];
