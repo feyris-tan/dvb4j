@@ -25,6 +25,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
 
             if (read == 0xc1)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -43,6 +46,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xc2)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -76,6 +82,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xc3)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -108,6 +117,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xc4)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -126,6 +138,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xc5)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -144,6 +159,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xc6)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -158,6 +176,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xc7)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -175,6 +196,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xc8)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -195,6 +219,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xca)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -207,6 +234,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xcb)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -230,6 +260,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xcd)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -242,6 +275,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xce)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {
@@ -258,6 +294,9 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
             }
             else if (read == 0xcf)
             {
+                if (in.position() == in.limit())
+                    break;
+
                 read = in.get() & 0xff;
                 switch (read)
                 {

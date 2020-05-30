@@ -2,6 +2,7 @@ package moe.yo3explorer.dvb4j.text;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
@@ -120,7 +121,6 @@ public class DvbCharsetDecoder extends CharsetDecoder {
             cleanBuffer[cleanPtr++] = dirtyBuffer[dirtyPtr];
         }
         int cleanLen = cleanPtr;
-
 
         CharBuffer decode = actualCharset.decode(ByteBuffer.wrap(cleanBuffer, 0, cleanLen));
         char[] decoded = decode.array();
