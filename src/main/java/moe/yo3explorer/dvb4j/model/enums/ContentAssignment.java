@@ -19,7 +19,7 @@ public enum ContentAssignment
     REMARKABLE_PEOPLE, EDUCATION_SCIENCE_FACTUAL_TOPICS, NATURE, TECHNOLOGY, MEDICINE, FOREIGN_COUNTRIES,
     SOCIAL_AND_SPIRITUAL_SCIENCES, FURTHER_EDUCATION, LANGUAGES, LEISURE_HOBBIES, TOURISM, HANDICRAFT, HOBBY_MOTORING,
     FITNESS_AND_HEALTH, COOKING, SHOPPING, GARDENING, ORIGINAL_LANGUAGE, BLACK_AND_WHITE, UNPUBLISHED, LIVE_BROADCAST,
-    _3D, REGIONAL;
+    _3D, REGIONAL, ADULT;
 
     public static ContentAssignment decodeContentAssignment(byte theByte)
     {
@@ -266,6 +266,19 @@ public enum ContentAssignment
             else if (level2 == 0x0F)
                 return USER_DEFINED;
         }
+        else if (level1 == 0x0c)
+        {
+            if (level2 == 0x00)
+                return ADULT;
+            else if (level2 >= 0x01 && level2 <= 0x0e)
+                return RESERVED;
+            else if (level2 == 0x0f)
+                return USER_DEFINED;
+        }
+        else if (level1 == 0x0d || level1 == 0x0e)
+            return RESERVED;
+        else if (level1 == 0x0f)
+            return USER_DEFINED;
 
         throw new DvbException("This content assignment is not yet implemented!");
     }
