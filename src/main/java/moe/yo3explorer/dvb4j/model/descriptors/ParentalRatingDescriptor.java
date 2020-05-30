@@ -19,10 +19,10 @@ public class ParentalRatingDescriptor implements Descriptor {
 
         for (int i = 0; i < buffer.length; i += 4)
         {
-            String countryCode = new String(buffer,i * 4,3, StandardCharsets.US_ASCII);
+            String countryCode = new String(buffer,i,3, StandardCharsets.US_ASCII);
 
             Integer rating = null;
-            int ratingRaw = buffer[(i * 4) + 3];
+            int ratingRaw = buffer[i + 3];
             if (ratingRaw >= 1 && ratingRaw <= 0x0f)
                 rating = ratingRaw + 3;
 
