@@ -68,6 +68,7 @@ public class DescriptorDecoder
         attachDescriptorType(VbiDataDescriptor.class);
         attachDescriptorType(AvcTimingAndHrdDescriptor.class);
         attachDescriptorType(DataBroadcastDescriptor.class);
+        attachDescriptorType(ServiceMoveDescriptor.class);
     }
 
     private Descriptor[] descriptors;
