@@ -4,6 +4,7 @@ import moe.yo3explorer.dvb4j.DvbException;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.descriptors.*;
 import moe.yo3explorer.dvb4j.model.extendedDescriptors.Ac4Descriptor;
+import moe.yo3explorer.dvb4j.model.extendedDescriptors.AudioPreselectionDescriptor;
 import moe.yo3explorer.dvb4j.model.extendedDescriptors.SupplementaryAudioDescriptor;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -63,6 +64,7 @@ public class DescriptorDecoder
         attachDescriptorType(NvodReferenceDescriptor.class);
         attachDescriptorType(HevcVideoDescriptor.class);
         attachExtensionDescriptorType(Ac4Descriptor.class);
+        attachExtensionDescriptorType(AudioPreselectionDescriptor.class);
     }
 
     private Descriptor[] descriptors;
