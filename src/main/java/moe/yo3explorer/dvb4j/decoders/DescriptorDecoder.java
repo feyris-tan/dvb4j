@@ -65,6 +65,7 @@ public class DescriptorDecoder
         attachDescriptorType(HevcVideoDescriptor.class);
         attachExtensionDescriptorType(Ac4Descriptor.class);
         attachExtensionDescriptorType(AudioPreselectionDescriptor.class);
+        attachDescriptorType(VbiDataDescriptor.class);
     }
 
     private Descriptor[] descriptors;
