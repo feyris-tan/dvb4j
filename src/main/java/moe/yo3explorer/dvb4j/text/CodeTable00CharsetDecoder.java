@@ -38,7 +38,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'i': out.put('ì'); continue;
                     case 'o': out.put('ò'); continue;
                     case 'u': out.put('ù'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xc2)
@@ -71,7 +71,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'u': out.put('ú'); continue;
                     case 'y': out.put('ý'); continue;
                     case 'z': out.put('ź'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xc3)
@@ -103,7 +103,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'u': out.put('û'); continue;
                     case 'w': out.put('ŵ'); continue;
                     case 'y': out.put('ŷ'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xc4)
@@ -121,7 +121,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'n': out.put('ñ'); continue;
                     case 'o': out.put('õ'); continue;
                     case 'u': out.put('ũ'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xc5)
@@ -139,7 +139,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'i': out.put('ī'); continue;
                     case 'o': out.put('ō'); continue;
                     case 'u': out.put('ū'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xc6)
@@ -153,7 +153,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'a': out.put('ă'); continue;
                     case 'g': out.put('ğ'); continue;
                     case 'u': out.put('ŭ'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xc7)
@@ -190,7 +190,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'o': out.put('ö'); continue;
                     case 'u': out.put('ü'); continue;
                     case 'y': out.put('ÿ'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xca)
@@ -202,7 +202,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'U': out.put('Ů'); continue;
                     case 'a': out.put('å'); continue;
                     case 'u': out.put('ů'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xcb)
@@ -225,7 +225,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'r': out.put('ŗ'); continue;
                     case 's': out.put('ş'); continue;
                     case 't': out.put('ţ'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xcd)
@@ -237,7 +237,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'U': out.put('Ű'); continue;
                     case 'o': out.put('ő'); continue;
                     case 'u': out.put('ű'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xce)
@@ -253,7 +253,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 'e': out.put('ę'); continue;
                     case 'i': out.put('į'); continue;
                     case 'u': out.put('ų'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
             else if (read == 0xcf)
@@ -279,7 +279,7 @@ public class CodeTable00CharsetDecoder extends CharsetDecoder {
                     case 's': out.put('š'); continue;
                     case 't': out.put('ť'); continue;
                     case 'z': out.put('ž'); continue;
-                    default: return CoderResult.unmappableForLength(in.position());
+                    default: continue;
                 }
             }
 
