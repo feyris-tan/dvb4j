@@ -61,7 +61,7 @@ public class PMTDecoder implements PSIDecoder {
             int pid = a | b;
             a = payload.get() & 0xf;
             a <<= 8;
-            b = payload.get();
+            b = payload.get() & 0xff;
             int esLength = a | b;
             if (esLength > (payload.limit() - payload.position()))
                 esLength = (payload.limit() - payload.position());
