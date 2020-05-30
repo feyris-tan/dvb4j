@@ -54,7 +54,9 @@ public class DvbPacket
                 parseAdaption(buffer);
                 break;
             default:
-                throw new RuntimeException("Invalid adaption!");
+                System.out.println("Found invalid adaption. Marking Packet as corrupt!");
+                tei = true;
+                break;
         }
     }
 
