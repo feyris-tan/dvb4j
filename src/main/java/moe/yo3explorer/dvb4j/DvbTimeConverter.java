@@ -2,6 +2,7 @@ package moe.yo3explorer.dvb4j;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.ByteBuffer;
 import java.util.Date;
@@ -11,7 +12,7 @@ public final class DvbTimeConverter
 {
     private DvbTimeConverter() {}
 
-    @NotNull
+    @Nullable
     public static Date parseTime(@NotNull ByteBuffer payload)
     {
         int mjd = payload.getShort() & 0xffff;
@@ -25,11 +26,20 @@ public final class DvbTimeConverter
         int m = m1 - 1 - k * 12;
 
         byte ho = payload.get();
-        int hour = Integer.parseInt(singleByteToHex(ho));
+        String hourString = singleByteToHex(ho);
+        if (hourString.contains("A") | hourString.contains("B") | hourString.contains("C") | hourString.contains("D") | hourString.contains("E") | hourString.contains("F"))
+            return null;
+        int hour = Integer.parseInt(hourString);
         byte mi = payload.get();
-        int minute = Integer.parseInt(singleByteToHex(mi));
+        String minuteString = singleByteToHex(mi);
+        if (minuteString.contains("A") | minuteString.contains("B") | minuteString.contains("C") | minuteString.contains("D") | minuteString.contains("E") | minuteString.contains("F"))
+            return null;
+        int minute = Integer.parseInt(minuteString);
         byte se = payload.get();
-        int second = Integer.parseInt(singleByteToHex(se));
+        String secondString = singleByteToHex(se);
+        if (secondString.contains("A") | secondString.contains("B") | secondString.contains("C") | secondString.contains("D") | secondString.contains("E") | secondString.contains("F"))
+            return null;
+        int second = Integer.parseInt(secondString);
 
         Date time = new GregorianCalendar(y, m - 1, d, hour, minute, second).getTime();
         return time;

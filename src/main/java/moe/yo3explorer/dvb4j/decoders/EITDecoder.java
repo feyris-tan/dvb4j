@@ -56,6 +56,8 @@ public class EITDecoder implements PSIDecoder {
             while (descriptorsRemain > 0)
             {
                 int descriptorId = payload.get() & 0xff;
+                if (descriptorId == 0 || descriptorId == 1)
+                    return;
                 int descriptorLength = payload.get() & 0xff;
                 descriptorsRemain -= 2;
 

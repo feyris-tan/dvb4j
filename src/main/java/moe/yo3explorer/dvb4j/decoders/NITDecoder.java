@@ -33,6 +33,10 @@ public class NITDecoder implements PSIDecoder {
 
         ByteBuffer payload = psiSection.getPayload();
         int nwDescriptorsRemain = payload.getShort() & 0x0fff;
+        if (nwDescriptorsRemain > payload.limit()) {
+            return;
+        }
+
         while (nwDescriptorsRemain > 0)
         {
             int nwDescriptorId = payload.get() & 0xff;
