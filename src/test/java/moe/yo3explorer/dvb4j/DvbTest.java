@@ -18,7 +18,7 @@ public class DvbTest implements DvbReceiver {
     @Test
     public void testAstra11494h22000() throws IOException
     {
-        perform("E:\\11494_H_22000.ts",false);
+        perform("/home/ft/Schreibtisch/test3.ts",false);
     }
 
     private void perform(String filename, boolean demux) throws IOException {

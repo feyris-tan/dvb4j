@@ -18,7 +18,7 @@ public class ShortEventDescriptor implements Descriptor {
 
         byte[] raw = new byte[3];
         wrap.get(raw);
-        iso639languageCode = new String(raw, UsedCharsets.DVB);
+        iso639languageCode = new String(raw, StandardCharsets.US_ASCII);
 
         int eventNameLength = wrap.get() & 0xff;
 
@@ -30,7 +30,7 @@ public class ShortEventDescriptor implements Descriptor {
 
         raw = new byte[textLength];
         wrap.get(raw);
-        text = new String(raw, StandardCharsets.US_ASCII);
+        text = new String(raw, UsedCharsets.DVB);
     }
 
     private String iso639languageCode;
