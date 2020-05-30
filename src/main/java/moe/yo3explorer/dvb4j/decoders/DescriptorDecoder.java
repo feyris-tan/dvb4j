@@ -70,6 +70,7 @@ public class DescriptorDecoder
         attachDescriptorType(DataBroadcastDescriptor.class);
         attachDescriptorType(ServiceMoveDescriptor.class);
         attachDescriptorType(ScramblingDescriptor.class);
+        attachDescriptorType(StdDescriptor.class);
     }
 
     private Descriptor[] descriptors;
