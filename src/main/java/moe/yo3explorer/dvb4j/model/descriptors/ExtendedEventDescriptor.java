@@ -53,6 +53,8 @@ public class ExtendedEventDescriptor implements Descriptor {
             wrap.get(strBuffer);
             String item = new String(strBuffer,UsedCharsets.DVB);
             itemLenRemain -= itemLen;
+            if (items == null)
+                items = new HashMap<>();
             items.put(itemDescription,item);
         }
 
