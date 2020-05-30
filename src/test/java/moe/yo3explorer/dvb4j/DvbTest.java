@@ -16,9 +16,9 @@ import java.util.*;
 @Category(AllTests.class)
 public class DvbTest implements DvbReceiver {
     @Test
-    public void testAstra11494h22000() throws IOException
+    public void testAstra() throws IOException
     {
-        perform("/home/ft/Schreibtisch/test3.ts",false);
+        perform("/home/ft/IdeaProjects/skyscraper/test2.ts",false);
     }
 
     private void perform(String filename, boolean demux) throws IOException {

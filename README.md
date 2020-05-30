@@ -29,3 +29,4 @@ The information needed to write this software were gathered from:
 - Descriptor list from https://en.wikipedia.org/wiki/Program-specific_information#Program_and_Elementary_Stream_Descriptor_Tags
 - ETSI TS 102 809
 - Packet header from https://en.wikipedia.org/wiki/MPEG_transport_stream#Packet
+- ITU-T Rec. H.222.0 (03/2017) 

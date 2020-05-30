@@ -3,6 +3,7 @@ package moe.yo3explorer.dvb4j.decoders;
 import moe.yo3explorer.dvb4j.DvbException;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.descriptors.*;
+import moe.yo3explorer.dvb4j.model.extendedDescriptors.Ac4Descriptor;
 import moe.yo3explorer.dvb4j.model.extendedDescriptors.SupplementaryAudioDescriptor;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -60,6 +61,8 @@ public class DescriptorDecoder
         attachDescriptorType(PrivateDataIndicatorDescriptor.class);
         attachDescriptorType(TimeShiftedServiceDescriptor.class);
         attachDescriptorType(NvodReferenceDescriptor.class);
+        attachDescriptorType(HevcVideoDescriptor.class);
+        attachExtensionDescriptorType(Ac4Descriptor.class);
     }
 
     private Descriptor[] descriptors;
@@ -161,11 +164,11 @@ public class DescriptorDecoder
             if (descriptorId == 0x7F)
             {
                 ExtensionDescriptor extensionDescriptor = (ExtensionDescriptor)instance;
-                descriptorClass = extensionDescriptors[extensionDescriptor.getTagExtension()].getClass();
-                if (descriptorClass == null)
-                {
+                Descriptor extensionDescriptorBlueprint = extensionDescriptors[extensionDescriptor.getTagExtension()];
+                if (extensionDescriptorBlueprint == null)
                     throw new DvbException(String.format("The extension descriptor %d (0x%02X) is not known.",extensionDescriptor.getTagExtension(),extensionDescriptor.getTagExtension()));
-                }
+                else
+                    descriptorClass = extensionDescriptorBlueprint.getClass();
                 instance = createInstance(descriptorClass);
                 instance.readFrom(extensionDescriptor.getSelectorBytes());
             }
