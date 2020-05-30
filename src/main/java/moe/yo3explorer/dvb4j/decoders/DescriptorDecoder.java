@@ -66,6 +66,7 @@ public class DescriptorDecoder
         attachExtensionDescriptorType(Ac4Descriptor.class);
         attachExtensionDescriptorType(AudioPreselectionDescriptor.class);
         attachDescriptorType(VbiDataDescriptor.class);
+        attachDescriptorType(AvcTimingAndHrdDescriptor.class);
     }
 
     private Descriptor[] descriptors;
