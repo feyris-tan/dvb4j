@@ -25,6 +25,9 @@ public class CATDecoder implements PSIDecoder
 
     @Override
     public void handlePsi(@NotNull PsiSection psiSection) {
+        if (knownDescriptors == null)
+            knownDescriptors = new HashSet<>();
+
         ByteBuffer payload = psiSection.getPayload();
         for (; payload.position() < payload.limit();)
         {
@@ -37,8 +40,6 @@ public class CATDecoder implements PSIDecoder
                 Descriptor descriptor = DescriptorDecoder.autoDecode(descriptorId, 1, descriptorBuffer);
                 if (descriptor.getTag() == 9)
                 {
-                    if (knownDescriptors == null)
-                        knownDescriptors = new HashSet<>();
                     CaDescriptor caDescriptor = (CaDescriptor)descriptor;
                     if (knownDescriptors.add(caDescriptor))
                     {
@@ -47,11 +48,11 @@ public class CATDecoder implements PSIDecoder
                 }
                 else
                 {
-                    throw new DvbException(String.format("Don't know what to do with Descriptor %02X in CAT",descriptor.getTag()));
+                    knownDescriptors.add(descriptor);
                 }
             }
         }
     }
 
-    private HashSet<CaDescriptor> knownDescriptors;
+    private HashSet<Descriptor> knownDescriptors;
 }
