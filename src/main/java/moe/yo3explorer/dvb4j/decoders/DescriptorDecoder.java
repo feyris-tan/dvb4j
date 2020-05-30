@@ -71,6 +71,7 @@ public class DescriptorDecoder
         attachDescriptorType(ServiceMoveDescriptor.class);
         attachDescriptorType(ScramblingDescriptor.class);
         attachDescriptorType(StdDescriptor.class);
+        attachDescriptorType(AncillaryDataDescriptor.class);
     }
 
     private Descriptor[] descriptors;
