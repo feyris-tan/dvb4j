@@ -69,6 +69,7 @@ public class DescriptorDecoder
         attachDescriptorType(AvcTimingAndHrdDescriptor.class);
         attachDescriptorType(DataBroadcastDescriptor.class);
         attachDescriptorType(ServiceMoveDescriptor.class);
+        attachDescriptorType(ScramblingDescriptor.class);
     }
 
     private Descriptor[] descriptors;
