@@ -97,7 +97,10 @@ public final class DvbTimeConverter
             return -1;
         int minutes = Integer.parseInt(hexByte);
 
-        int seconds = Integer.parseInt(singleByteToHex(level1[2]));
+        hexByte = singleByteToHex(level1[2]);
+        if (hexByte.contains("A") || hexByte.contains("B") || hexByte.contains("C") || hexByte.contains("D") || hexByte.contains("E") || hexByte.contains("F"))
+            return -1;
+        int seconds = Integer.parseInt(hexByte);
 
         long result = 0;
         result += (seconds * 1000);
