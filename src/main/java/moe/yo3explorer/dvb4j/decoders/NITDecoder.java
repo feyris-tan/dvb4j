@@ -40,6 +40,11 @@ public class NITDecoder implements PSIDecoder {
         while (nwDescriptorsRemain > 0)
         {
             int nwDescriptorId = payload.get() & 0xff;
+            if (nwDescriptorId == 0x47)
+            {
+                // darf laut ETSI 300468 Seite 39 nicht vorkommen.
+                return;
+            }
             int nwDescriptorLen = payload.get() & 0xff;
             nwDescriptorsRemain -= 2;
 

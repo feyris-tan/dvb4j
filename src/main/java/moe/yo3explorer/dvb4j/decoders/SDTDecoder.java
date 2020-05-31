@@ -44,6 +44,10 @@ public class SDTDecoder implements PSIDecoder {
             int runningStatus = (flags2 >> 13) & 0x07;
             boolean freeCaMode = (flags2 & 0x1000) != 0;
             int descriptorsLength = (flags2 & 0x0FFF);
+
+            if (descriptorsLength > payload.limit())
+                return;
+
             ArrayList<Descriptor> descriptors = new ArrayList<>();
             while (descriptorsLength > 0)
             {
