@@ -2,6 +2,7 @@ package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.text.UsedCharsets;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +24,10 @@ public class ExtendedEventDescriptor implements Descriptor {
     }
 
     @Override
-    public void readFrom(byte[] buffer) {
+    public void readFrom(@NotNull byte[] buffer) {
+        if (buffer.length < 5)
+            return;
+
         ByteBuffer wrap = ByteBuffer.wrap(buffer);
 
         byte numberFlags = wrap.get();
