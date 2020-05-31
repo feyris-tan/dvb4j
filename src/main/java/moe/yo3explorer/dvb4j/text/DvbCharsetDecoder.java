@@ -80,7 +80,7 @@ public class DvbCharsetDecoder extends CharsetDecoder {
                     case 0x07: actualCharset = UsedCharsets.ISO_8859_11; continue;
                     case 0x08: actualCharset = UsedCharsets.ISO_10646; continue;
                     case 0x09: actualCharset = UsedCharsets.ISO_8859_13; continue;
-                    case 0x0a: throw new RuntimeException("not implemented");
+                    case 0x0a: actualCharset = UsedCharsets.ISO_8859_14; continue;
                     case 0x0b: actualCharset = UsedCharsets.ISO_8859_15; continue;
                     case 0x11: actualCharset = UsedCharsets.ISO_10646; continue;
                     case 0x12: throw new RuntimeException("not implemented");
