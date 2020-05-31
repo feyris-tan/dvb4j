@@ -6,6 +6,7 @@ import moe.yo3explorer.dvb4j.model.descriptors.*;
 import moe.yo3explorer.dvb4j.model.extendedDescriptors.Ac4Descriptor;
 import moe.yo3explorer.dvb4j.model.extendedDescriptors.AudioPreselectionDescriptor;
 import moe.yo3explorer.dvb4j.model.extendedDescriptors.SupplementaryAudioDescriptor;
+import moe.yo3explorer.dvb4j.model.extendedDescriptors.UriLinkageDescriptor;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -72,6 +73,7 @@ public class DescriptorDecoder
         attachDescriptorType(ScramblingDescriptor.class);
         attachDescriptorType(StdDescriptor.class);
         attachDescriptorType(AncillaryDataDescriptor.class);
+        attachExtensionDescriptorType(UriLinkageDescriptor.class);
     }
 
     private Descriptor[] descriptors;
