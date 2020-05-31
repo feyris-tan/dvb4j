@@ -94,10 +94,11 @@ public class DvbCharsetDecoder extends CharsetDecoder {
             }
 
             if ((dirtyBuffer[dirtyPtr] & 0xff) == 0xC2) {
-                if ((dirtyBuffer[dirtyPtr + 1] & 0xff) >= 0x80 && (dirtyBuffer[dirtyPtr + 1] & 0xff) <= 0x9F) {
-                    dirtyPtr++;
-                    continue;
-                }
+                if (dirtyPtr != dirtyLength - 1)
+                    if ((dirtyBuffer[dirtyPtr + 1] & 0xff) >= 0x80 && (dirtyBuffer[dirtyPtr + 1] & 0xff) <= 0x9F) {
+                        dirtyPtr++;
+                        continue;
+                    }
             }
 
             if ((dirtyBuffer[dirtyPtr] & 0xff) >= 0x80 && (dirtyBuffer[dirtyPtr] & 0xff) <= 0x9F) {
