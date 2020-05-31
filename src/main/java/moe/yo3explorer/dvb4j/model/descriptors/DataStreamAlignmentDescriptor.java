@@ -14,10 +14,12 @@ public class DataStreamAlignmentDescriptor implements Descriptor {
 
     @Override
     public void readFrom(@NotNull byte[] buffer) {
-        if (buffer[0] >= 5)
+        int flags = buffer[0] & 0xff;
+
+        if (flags >= 5)
             dataStreamAlignment = DataStreamAlignment.UNKNOWN;
         else
-            dataStreamAlignment = DataStreamAlignment.values()[buffer[0]];
+            dataStreamAlignment = DataStreamAlignment.values()[flags];
     }
 
     public DataStreamAlignment getDataStreamAlignment() {
