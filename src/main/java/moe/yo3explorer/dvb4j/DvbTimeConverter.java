@@ -86,8 +86,17 @@ public final class DvbTimeConverter
     {
         byte[] level1 = new byte[3];
         payload.get(level1);
-        int hours = Integer.parseInt(singleByteToHex(level1[0]));
-        int minutes = Integer.parseInt(singleByteToHex(level1[1]));
+
+        String hexByte = singleByteToHex(level1[0]);
+        if (hexByte.contains("A") || hexByte.contains("B") || hexByte.contains("C") || hexByte.contains("D") || hexByte.contains("E") || hexByte.contains("F"))
+            return -1;
+        int hours = Integer.parseInt(hexByte);
+
+        hexByte = singleByteToHex(level1[1]);
+        if (hexByte.contains("A") || hexByte.contains("B") || hexByte.contains("C") || hexByte.contains("D") || hexByte.contains("E") || hexByte.contains("F"))
+            return -1;
+        int minutes = Integer.parseInt(hexByte);
+
         int seconds = Integer.parseInt(singleByteToHex(level1[2]));
 
         long result = 0;

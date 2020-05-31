@@ -43,7 +43,11 @@ public class EITDecoder implements PSIDecoder {
         {
             int eventId = payload.getShort() & 0xffff;
             Date startTime = DvbTimeConverter.parseTime(payload);
+            if (startTime == null)
+                return;
             long duration = DvbTimeConverter.parseDuration(payload);
+            if (duration == -1)
+                return;
 
             short flags = payload.getShort();
             int runningStatusRaw = (flags >> 13) & 0x07;
