@@ -18,7 +18,7 @@ public class DvbTest implements DvbReceiver {
     @Test
     public void testAstra() throws IOException
     {
-        perform("/home/ft/IdeaProjects/skyscraper/test2.ts",false);
+        perform("C:\\Users\\Anwender\\source\\repos\\skyscraper\\test2.ts",false);
     }
 
     private void perform(String filename, boolean demux) throws IOException {

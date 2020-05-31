@@ -74,6 +74,7 @@ public class DescriptorDecoder
         attachDescriptorType(StdDescriptor.class);
         attachDescriptorType(AncillaryDataDescriptor.class);
         attachExtensionDescriptorType(UriLinkageDescriptor.class);
+        attachDescriptorType(AacDescriptor.class);
     }
 
     private Descriptor[] descriptors;
