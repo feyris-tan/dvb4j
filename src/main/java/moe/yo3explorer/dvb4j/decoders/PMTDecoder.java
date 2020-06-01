@@ -71,6 +71,8 @@ public class PMTDecoder implements PSIDecoder {
                 int tag = payload.get() & 0xff;
                 int tagLength = payload.get() & 0xff;
                 esLength -= 2;
+                if (tagLength == 0)
+                    continue;
                 if (esLength >= tagLength)
                 {
                     byte[] tagContent = new byte[tagLength];
