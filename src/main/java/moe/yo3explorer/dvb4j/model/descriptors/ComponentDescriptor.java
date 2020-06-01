@@ -20,6 +20,8 @@ public class ComponentDescriptor implements Descriptor {
 
     @Override
     public void readFrom(byte[] buffer) {
+        if (buffer.length < 2)
+            return;
         ByteBuffer wrap = ByteBuffer.wrap(buffer);
 
         byte componentTypeA = wrap.get();
