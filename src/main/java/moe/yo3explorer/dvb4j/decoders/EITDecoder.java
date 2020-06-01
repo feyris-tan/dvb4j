@@ -31,6 +31,9 @@ public class EITDecoder implements PSIDecoder {
 
     @Override
     public void handlePsi(@NotNull PsiSection psiSection) {
+        if (psiSection.getRawDataLength() <= 3)
+            return;
+
         int tableId = psiSection.getTableId();
         int serviceId = psiSection.getServiceId();
 

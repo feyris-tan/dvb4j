@@ -9,6 +9,7 @@ public class PsiSection
     public boolean headerComplete;
     public int i_need;
     private ByteArrayOutputStream data;
+    private int receivedBytes;
 
     public PsiSection()
     {
@@ -20,6 +21,7 @@ public class PsiSection
             data = new ByteArrayOutputStream();
         }
         data.write(appendable,0,appendable.length);
+        receivedBytes += appendable.length;
     }
 
     public byte[] getData()
@@ -214,5 +216,10 @@ public class PsiSection
         interesting[1] = data[4];
         int serviceId = ByteBuffer.wrap(interesting).getShort() & 0xffff;
         return serviceId;
+    }
+
+    public int getRawDataLength()
+    {
+        return receivedBytes;
     }
 }
