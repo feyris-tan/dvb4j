@@ -78,6 +78,7 @@ public class DescriptorDecoder
         attachDescriptorType(IbpDescriptor.class);
         attachDescriptorType(ShortSmoothingBufferDescriptor.class);
         attachDescriptorType(Mpeg4AudioDescriptor.class);
+        attachDescriptorType(StuffingDescriptor.class);
     }
 
     private Descriptor[] descriptors;
