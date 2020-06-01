@@ -67,7 +67,7 @@ public class EITDecoder implements PSIDecoder {
                 int descriptorId = payload.get() & 0xff;
                 if (descriptorId == 0 || descriptorId == 1)
                     return;
-                if (descriptorId == 34 || descriptorId == 25 || descriptorId == 41)
+                if (descriptorId == 34 || descriptorId == 25 || descriptorId == 41 || descriptorId == 24)
                 {
                     //Der ergibt keinen Sinn in einer EIT... aber ist das korrekt?
                     return;

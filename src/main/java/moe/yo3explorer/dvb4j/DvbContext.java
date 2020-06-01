@@ -54,6 +54,7 @@ public class DvbContext
             {
                 pids[pid] = null;
                 psiSections[pid] = null;
+                packetLossEvents++;
                 dvbReceiver.onPacketLoss(pid,oldContinuity +1, newContinuity);
                 return;
             }
@@ -234,4 +235,9 @@ public class DvbContext
     private PSIDecoder[] psiDecoders;
     private DvbReceiver dvbReceiver;
     private int currentlyProcessingPid;
+    private long packetLossEvents;
+
+    public long getNumPacketLossEvents() {
+        return packetLossEvents;
+    }
 }
