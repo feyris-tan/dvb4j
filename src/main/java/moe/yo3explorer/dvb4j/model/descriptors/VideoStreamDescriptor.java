@@ -16,7 +16,7 @@ public class VideoStreamDescriptor implements Descriptor {
         mpeg1only = (buffer[0] & 0x04) != 0;
         constrainedParameterFlag = (buffer[0] & 0x02) != 0;
         stillPictureFlag = (buffer[0] & 0x01) != 0;
-        if (!mpeg1only)
+        if (!mpeg1only && buffer.length > 1)
         {
             profileAndLevelFlags = buffer[1];
             chromaFormat = buffer[2] >> 6;
