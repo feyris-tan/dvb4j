@@ -128,6 +128,11 @@ public class DvbPacket
             Integer piecewiseRate = null;
             if (piecewiseRateFlag)
             {
+                if (buffer.limit() == buffer.position())
+                {
+                    tei = true;
+                    return buffer.position();
+                }
                 int piecewiseRaw = buffer.get() & 0xff;
                 piecewiseRaw += (buffer.getShort() & 0xffff) >> 8;
                 piecewiseRaw = piecewiseRaw & 0x3fffff;
