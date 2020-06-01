@@ -72,8 +72,17 @@ public class EITDecoder implements PSIDecoder {
                     //Der ergibt keinen Sinn in einer EIT... aber ist das korrekt?
                     return;
                 }
+                if (descriptorId == 0x6c)
+                {
+                    //Ist laut ETSI 300468, Seite 39 nicht erlaubt
+                    return;
+                }
                 int descriptorLength = payload.get() & 0xff;
                 descriptorsRemain -= 2;
+
+                int remain = payload.limit() - payload.position();
+                if (descriptorLength > remain)
+                    return;
 
                 byte[] descriptorBuffer = new byte[descriptorLength];
                 payload.get(descriptorBuffer);

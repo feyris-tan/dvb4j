@@ -15,6 +15,9 @@ public final class DvbTimeConverter
     @Nullable
     public static Date parseTime(@NotNull ByteBuffer payload)
     {
+        if ((payload.limit() - payload.position()) < 5)
+            return null;
+
         int mjd = payload.getShort() & 0xffff;
         int y1 = (int)(((double)mjd - 15078.2) / 365.25);
         int m1 = (int)((mjd - 14956.1 - (int)((double)y1 * 365.25)) / 30.6001);
