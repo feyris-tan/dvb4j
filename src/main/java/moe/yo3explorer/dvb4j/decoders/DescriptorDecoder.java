@@ -82,6 +82,7 @@ public class DescriptorDecoder
         attachDescriptorType(VideoWindowDescriptor.class);
         attachDescriptorType(ExtensionDescriptor63.class);
         attachExtensionDescriptor63Type(HevcTimingAndHrdDescriptor.class);
+        attachDescriptorType(TimeShiftedEventDescriptor.class);
     }
 
     private Descriptor[] descriptors;
