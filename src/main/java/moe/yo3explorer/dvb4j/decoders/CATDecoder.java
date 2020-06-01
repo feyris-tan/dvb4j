@@ -25,6 +25,9 @@ public class CATDecoder implements PSIDecoder
 
     @Override
     public void handlePsi(@NotNull PsiSection psiSection) {
+        if (psiSection.getRawDataLength() <= 8)
+            return;
+
         if (knownDescriptors == null)
             knownDescriptors = new HashSet<>();
 
