@@ -80,6 +80,7 @@ public class DescriptorDecoder
         attachDescriptorType(Mpeg4AudioDescriptor.class);
         attachDescriptorType(StuffingDescriptor.class);
         attachDescriptorType(ReservedForFutureUse.class);
+        attachDescriptorType(DsngDescriptor.class);
     }
 
     private Descriptor[] descriptors;
