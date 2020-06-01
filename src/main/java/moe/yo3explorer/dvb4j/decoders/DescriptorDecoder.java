@@ -3,10 +3,8 @@ package moe.yo3explorer.dvb4j.decoders;
 import moe.yo3explorer.dvb4j.DvbException;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.descriptors.*;
-import moe.yo3explorer.dvb4j.model.extendedDescriptors.Ac4Descriptor;
-import moe.yo3explorer.dvb4j.model.extendedDescriptors.AudioPreselectionDescriptor;
-import moe.yo3explorer.dvb4j.model.extendedDescriptors.SupplementaryAudioDescriptor;
-import moe.yo3explorer.dvb4j.model.extendedDescriptors.UriLinkageDescriptor;
+import moe.yo3explorer.dvb4j.model.extendedDescriptors.*;
+import moe.yo3explorer.dvb4j.model.extendedDescriptors63.HevcTimingAndHrdDescriptor;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -82,10 +80,13 @@ public class DescriptorDecoder
         attachDescriptorType(ReservedForFutureUse.class);
         attachDescriptorType(DsngDescriptor.class);
         attachDescriptorType(VideoWindowDescriptor.class);
+        attachDescriptorType(ExtensionDescriptor63.class);
+        attachExtensionDescriptor63Type(HevcTimingAndHrdDescriptor.class);
     }
 
     private Descriptor[] descriptors;
     private Descriptor[] extensionDescriptors;
+    private Descriptor[] extensionDescriptors63;
 
     private static DescriptorDecoder instance;
     public static DescriptorDecoder getInstance()
@@ -145,6 +146,21 @@ public class DescriptorDecoder
         extensionDescriptors[descriptor.getTag()] = descriptor;
     }
 
+    @Contract(pure = true)
+    private void attachExtensionDescriptor63Type(@NotNull Class<? extends Descriptor> descriptorType)
+    {
+        if (extensionDescriptors63 == null) {
+            extensionDescriptors63 = new Descriptor[256];
+        }
+
+        Descriptor descriptor = createInstance(descriptorType);
+        if (extensionDescriptors63[descriptor.getTag()] != null)
+        {
+            throw new DvbException("The Descriptor's ID is used more than once.");
+        }
+        extensionDescriptors63[descriptor.getTag()] = descriptor;
+    }
+
     @NotNull
     private Descriptor createInstance(@NotNull Class<? extends Descriptor> descriptorType) {
         try {
@@ -197,6 +213,24 @@ public class DescriptorDecoder
                     descriptorClass = extensionDescriptorBlueprint.getClass();
                 instance = createInstance(descriptorClass);
                 instance.readFrom(extensionDescriptor.getSelectorBytes());
+            }
+            if (descriptorId == 63)
+            {
+                ExtensionDescriptor63 extensionDescriptor63 = (ExtensionDescriptor63)instance;
+                int tagExtension = extensionDescriptor63.getTagExtension();
+                if (tagExtension >= 0x11 && tagExtension <= 0xff)
+                {
+                    ReservedExtendedDescriptor reservedExtendedDescriptor = new ReservedExtendedDescriptor(tagExtension);
+                    reservedExtendedDescriptor.readFrom(extensionDescriptor63.getSelectorBytes());
+                    return reservedExtendedDescriptor;
+                }
+                Descriptor extensionDescriptor63Blueprint = extensionDescriptors63[tagExtension];
+                if (extensionDescriptor63Blueprint == null)
+                    throw new DvbException(String.format("The extension descriptor %d (0x%02X) is not known. See Page 132 of ITU-T Rec. H.222.0 (03/2017) ", tagExtension, tagExtension));
+                else
+                    descriptorClass = extensionDescriptor63Blueprint.getClass();
+                instance = createInstance(descriptorClass);
+                instance.readFrom(extensionDescriptor63.getSelectorBytes());
             }
 
             return instance;
