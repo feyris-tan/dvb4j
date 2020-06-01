@@ -32,12 +32,22 @@ public class BATDecoder implements PSIDecoder {
     public void handlePsi(@NotNull PsiSection psiSection) {
         ByteBuffer payload = psiSection.getPayload();
         int descriptorsRemain = (int)payload.getShort() & 0x0fff;
+
+        if (payload.limit() < descriptorsRemain)
+            return;
+
         ArrayList<Descriptor> descriptors = new ArrayList<>();
         while (descriptorsRemain > 0)
         {
             int descriptorId = payload.get() & 0xff;
             int descriptorLength = payload.get() & 0xff;
             descriptorsRemain -= 2;
+
+            if (descriptorId == 0x5A)
+            {
+                //Kann nicht in einer BAT vorkommen.
+                return;
+            }
 
             if (descriptorsRemain >= descriptorLength)
             {

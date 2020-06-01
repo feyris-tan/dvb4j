@@ -178,9 +178,16 @@ public class DescriptorDecoder
             if (descriptorId == 0x7F)
             {
                 ExtensionDescriptor extensionDescriptor = (ExtensionDescriptor)instance;
-                Descriptor extensionDescriptorBlueprint = extensionDescriptors[extensionDescriptor.getTagExtension()];
+                int tagExtension = extensionDescriptor.getTagExtension();
+                if (tagExtension >= 0x80 && tagExtension <= 0xff)
+                {
+                    UserDefinedDescriptor userDefinedDescriptor = new UserDefinedDescriptor(tagExtension);
+                    userDefinedDescriptor.readFrom(extensionDescriptor.getSelectorBytes());
+                    return userDefinedDescriptor;
+                }
+                Descriptor extensionDescriptorBlueprint = extensionDescriptors[tagExtension];
                 if (extensionDescriptorBlueprint == null)
-                    throw new DvbException(String.format("The extension descriptor %d (0x%02X) is not known.",extensionDescriptor.getTagExtension(),extensionDescriptor.getTagExtension()));
+                    throw new DvbException(String.format("The extension descriptor %d (0x%02X) is not known.", tagExtension, tagExtension));
                 else
                     descriptorClass = extensionDescriptorBlueprint.getClass();
                 instance = createInstance(descriptorClass);
