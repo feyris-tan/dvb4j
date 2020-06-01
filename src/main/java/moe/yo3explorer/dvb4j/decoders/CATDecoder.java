@@ -36,6 +36,13 @@ public class CATDecoder implements PSIDecoder
         {
             int descriptorId = payload.get() & 0xff;
             int descriptorLength = payload.get() & 0xff;
+
+            if (descriptorId == 0x00 || descriptorId == 0x01)
+            {
+                //reserviert und verboten!
+                return;
+            }
+
             if (descriptorLength <= payload.limit() - payload.position())
             {
                 byte[] descriptorBuffer = new byte[descriptorLength];
