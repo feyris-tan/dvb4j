@@ -38,6 +38,8 @@ public class EITDecoder implements PSIDecoder {
         int serviceId = psiSection.getServiceId();
 
         ByteBuffer payload = psiSection.getPayload();
+        if (payload.limit() <= 5)
+            return;
         int transportStreamId = payload.getShort() & 0xffff;
         int originalNetworkid = payload.getShort() & 0xffff;
         int segmentLastSectionNumber = payload.get() & 0xff;
