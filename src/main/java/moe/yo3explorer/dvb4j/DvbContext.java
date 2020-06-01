@@ -87,6 +87,12 @@ public class DvbContext
         {
             int startOffset = dvbPacket.getPayloadStartOffset();
             if (startOffset > 0) {
+                startOffset = payload.position() + startOffset;
+                if (startOffset > payload.limit())
+                {
+                    System.out.println("got broken packet!");
+                    return;
+                }
                 payload.position(payload.position() + startOffset);
                 available -= startOffset;
             }
