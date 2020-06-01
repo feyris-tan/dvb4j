@@ -81,6 +81,7 @@ public class DescriptorDecoder
         attachDescriptorType(StuffingDescriptor.class);
         attachDescriptorType(ReservedForFutureUse.class);
         attachDescriptorType(DsngDescriptor.class);
+        attachDescriptorType(VideoWindowDescriptor.class);
     }
 
     private Descriptor[] descriptors;
