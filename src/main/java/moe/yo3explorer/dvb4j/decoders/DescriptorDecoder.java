@@ -79,6 +79,7 @@ public class DescriptorDecoder
         attachDescriptorType(ShortSmoothingBufferDescriptor.class);
         attachDescriptorType(Mpeg4AudioDescriptor.class);
         attachDescriptorType(StuffingDescriptor.class);
+        attachDescriptorType(ReservedForFutureUse.class);
     }
 
     private Descriptor[] descriptors;
@@ -116,7 +117,7 @@ public class DescriptorDecoder
     private void attachDescriptorType(@NotNull Class<? extends Descriptor> descriptorType)
     {
         if (descriptors == null) {
-            descriptors = new Descriptor[255];
+            descriptors = new Descriptor[256];
         }
 
         Descriptor descriptor = createInstance(descriptorType);
@@ -131,7 +132,7 @@ public class DescriptorDecoder
     private void attachExtensionDescriptorType(@NotNull Class<? extends Descriptor> descriptorType)
     {
         if (extensionDescriptors == null) {
-            extensionDescriptors = new Descriptor[255];
+            extensionDescriptors = new Descriptor[256];
         }
 
         Descriptor descriptor = createInstance(descriptorType);
