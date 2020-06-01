@@ -180,7 +180,7 @@ public enum ComponentType
         {
             if (component_type >= 0x00 && component_type <= 0x7F)
                 return AC3_AUDIO;
-            else if (component_type <= 0x80 && component_type >= 0xFF)
+            else if (component_type >= 0x80 && component_type <= 0xFF)
                 return ENHANCED_AC3_AUDIO;
         }
         else if (stream_content == 0x05)
@@ -253,6 +253,6 @@ public enum ComponentType
         }
 
 
-        throw new RuntimeException("This component type is not implemented yet!");
+        throw new RuntimeException(String.format("This component type is not implemented yet! Stream content = %02X, Component Type = %02X",stream_content,component_type));
     }
 }
