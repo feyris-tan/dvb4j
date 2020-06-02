@@ -11,7 +11,6 @@ public class StdDescriptor implements Descriptor {
 
     @Override
     public void readFrom(@NotNull byte[] buffer) {
-        assert buffer.length == 1;
         leakValid = (buffer[0] & 0x01) != 0;
     }
 

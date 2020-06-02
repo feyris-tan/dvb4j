@@ -30,6 +30,7 @@ public class TDTDecoder implements PSIDecoder
         ByteBuffer payload = psiSection.getPayload();
         Date date = DvbTimeConverter.parseTime(payload);
         if (receiver != null)
-            receiver.onTdtTime(date);
+            if (date != null)
+                receiver.onTdtTime(date);
     }
 }

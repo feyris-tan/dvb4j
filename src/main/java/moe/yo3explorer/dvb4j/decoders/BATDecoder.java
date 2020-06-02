@@ -43,7 +43,7 @@ public class BATDecoder implements PSIDecoder {
             int descriptorLength = payload.get() & 0xff;
             descriptorsRemain -= 2;
 
-            if (descriptorId == 0x5A)
+            if (descriptorId == 0x5A || descriptorId == 0x6b)
             {
                 //Kann nicht in einer BAT vorkommen.
                 return;
@@ -71,6 +71,10 @@ public class BATDecoder implements PSIDecoder {
                 int descriptorId = payload.get() & 0xff;
                 int descriptorLength = payload.get() & 0xff;
                 tsLoopRemain -= 2;
+
+                if(descriptorId == 0x55)    //Darf nicht in BAT vorkommen.
+                    return;
+
                 transportDescriptorRemain -= 2;
                 if (transportDescriptorRemain >= descriptorLength)
                 {
