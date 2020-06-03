@@ -16,6 +16,7 @@ public class UsedCharsets
     public static final Charset ISO_8859_7 = Charset.forName("ISO-8859-7");
     public static final Charset ISO_8859_8 = Charset.forName("ISO-8859-8");
     public static final Charset ISO_8859_9 = Charset.forName("ISO-8859-9");
+    public static final Charset ISO_8859_10 = new Iso8859Ten();
     public static final Charset ISO_8859_11 = Charset.forName("x-iso-8859-11");
     public static final Charset ISO_8859_13 = Charset.forName("ISO-8859-13");
     public static final Charset ISO_8859_14 = new Iso8859Fourteen();
