@@ -83,6 +83,7 @@ public class DescriptorDecoder
         attachDescriptorType(ExtensionDescriptor63.class);
         attachExtensionDescriptor63Type(HevcTimingAndHrdDescriptor.class);
         attachDescriptorType(TimeShiftedEventDescriptor.class);
+        attachDescriptorType(AdaptionFieldDataDescriptor.class);
     }
 
     private Descriptor[] descriptors;
