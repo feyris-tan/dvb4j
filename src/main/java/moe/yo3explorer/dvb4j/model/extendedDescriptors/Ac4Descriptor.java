@@ -1,6 +1,6 @@
 package moe.yo3explorer.dvb4j.model.extendedDescriptors;
 
-import moe.yo3explorer.dvb4j.model.Ac4ChannelMode;
+import moe.yo3explorer.dvb4j.model.enums.Ac4ChannelMode;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 
 import java.nio.ByteBuffer;
