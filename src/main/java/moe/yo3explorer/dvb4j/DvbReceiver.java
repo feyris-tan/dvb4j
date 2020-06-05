@@ -19,4 +19,5 @@ public interface DvbReceiver
     void onNetworkInformation(SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor, List<Descriptor> tsDescriptors, List<Descriptor> networkDescriptors, NITMetadata nitMetadata);
     void onScheduledEvent(EITEvent eitEvent);
     void onPacketLoss(int pid, int expectedContinuity, int actualContinuity);
+    void onUnknownPsi(int pid, PsiSection psiSection);
 }

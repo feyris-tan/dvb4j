@@ -104,6 +104,11 @@ public class DvbTest implements DvbReceiver {
         System.out.printf("Detected Packet Loss on PID %04X, (expected %d, got %d)\n",pid,expectedContinuity,actualContinuity);
     }
 
+    @Override
+    public void onUnknownPsi(int pid, @NotNull PsiSection psiSection) {
+        System.out.printf("Found unknown PSI %02X on PID %04X\n",psiSection.getTableId(),pid);
+    }
+
     public void printStatistics(@NotNull DvbContext context)
     {
         int[] ints = context.listAvailablePids();

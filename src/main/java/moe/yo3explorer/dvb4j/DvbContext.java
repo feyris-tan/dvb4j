@@ -120,7 +120,7 @@ public class DvbContext
                     if (psiSection.validate()) {
                         synchronized (this) {
                             currentlyProcessingPid = pid;
-                            gather(psiSection);
+                            gather(psiSection,pid);
                         }
                     }
                     psiSection = null;
@@ -173,7 +173,7 @@ public class DvbContext
         return result;
     }
 
-    private void gather(@NotNull PsiSection psiSection)
+    private void gather(@NotNull PsiSection psiSection, int pid)
     {
         int table = psiSection.getTableId();
         if (psiDecoders[table] != null)
@@ -181,7 +181,7 @@ public class DvbContext
             psiDecoders[table].handlePsi(psiSection);
             return;
         }
-        System.out.printf("Gathering for table %02X\n",table);
+        dvbReceiver.onUnknownPsi(pid,psiSection);
     }
 
     public void attachPsiDecoder(PSIDecoder psiDecoder)
