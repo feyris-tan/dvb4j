@@ -84,6 +84,9 @@ public class DescriptorDecoder
         attachExtensionDescriptor63Type(HevcTimingAndHrdDescriptor.class);
         attachDescriptorType(TimeShiftedEventDescriptor.class);
         attachDescriptorType(AdaptionFieldDataDescriptor.class);
+        attachDescriptorType(Mpeg2StereoscopicVideoFormatDescriptor.class);
+        attachDescriptorType(MultilingualComponentDescriptor.class);
+        attachDescriptorType(StereoscopicProgramDescriptor.class);
     }
 
     private Descriptor[] descriptors;
