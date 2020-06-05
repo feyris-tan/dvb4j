@@ -87,6 +87,7 @@ public class DescriptorDecoder
         attachDescriptorType(Mpeg2StereoscopicVideoFormatDescriptor.class);
         attachDescriptorType(MultilingualComponentDescriptor.class);
         attachDescriptorType(StereoscopicProgramDescriptor.class);
+        attachDescriptorType(MetadataPointerDescriptor.class);
     }
 
     private Descriptor[] descriptors;
