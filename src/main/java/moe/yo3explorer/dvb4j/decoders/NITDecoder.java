@@ -45,6 +45,11 @@ public class NITDecoder implements PSIDecoder {
                 // darf laut ETSI 300468 Seite 39 nicht vorkommen.
                 return;
             }
+            if (nwDescriptorId == 22 || nwDescriptorId == 24)
+            {
+                //Ergibt keinen Sinn in einer NIT - aber passt das wirklich?
+                return;
+            }
             int nwDescriptorLen = payload.get() & 0xff;
             nwDescriptorsRemain -= 2;
 
