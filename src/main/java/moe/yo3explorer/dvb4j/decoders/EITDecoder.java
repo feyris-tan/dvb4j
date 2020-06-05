@@ -56,6 +56,11 @@ public class EITDecoder implements PSIDecoder {
 
             short flags = payload.getShort();
             int runningStatusRaw = (flags >> 13) & 0x07;
+            if (runningStatusRaw > 6)
+            {
+                //Ungültiger Running Status, also dürfte die ganze EIT ungültig sein.
+                return;
+            }
             RunningStatus runningStatus = RunningStatus.values()[runningStatusRaw];
 
             boolean encrypted = (flags & 0x1000) != 0;
