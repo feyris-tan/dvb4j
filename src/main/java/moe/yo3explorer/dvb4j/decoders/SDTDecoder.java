@@ -55,7 +55,7 @@ public class SDTDecoder implements PSIDecoder {
                 int descriptorLength = payload.get() & 0xff;
                 descriptorsLength -= 2;
 
-                if (descriptorId == 0x61 || descriptorId == 0x40 || descriptorId == 0x63)
+                if (descriptorId == 0x61 || descriptorId == 0x40 || descriptorId == 0x63 || descriptorId == 0x74)
                 {
                     //Laut ETSI 300468 Seite 39 kommen die nicht in SDT vor
                     return;
