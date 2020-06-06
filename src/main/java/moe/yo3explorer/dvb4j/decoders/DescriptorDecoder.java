@@ -99,6 +99,7 @@ public class DescriptorDecoder
         attachDescriptorType(Mpeg4AudioExtensionDescriptor.class);
         attachDescriptorType(CellFrequencyLinkDescriptor.class);
         attachDescriptorType(Mpeg4TextDescriptor.class);
+        attachDescriptorType(FlexMuxTimingDescriptor.class);
     }
 
     private Descriptor[] descriptors;
