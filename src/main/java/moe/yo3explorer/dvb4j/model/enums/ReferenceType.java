@@ -1,0 +1,10 @@
+package moe.yo3explorer.dvb4j.model.enums;
+
+public enum ReferenceType
+{
+    USUAL_AUDIO_STREAM,
+    SEPARATE_AUDIO_STREAM,
+    DIFFERENT_SERVICE_SAME_TRANSPORT_STREAM,
+    DIFFERENT_SERVICE_DIFFERENT_TRANSPORT_STREAM,
+    RESERVED
+}
