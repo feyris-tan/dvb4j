@@ -91,6 +91,7 @@ public class DescriptorDecoder
         attachDescriptorType(J2KVideoDescriptor.class);
         attachDescriptorType(ContentIdentifierDescriptor.class);
         attachDescriptorType(HierarchyDescriptor.class);
+        attachDescriptorType(SvcExtensionDescriptor.class);
     }
 
     private Descriptor[] descriptors;
