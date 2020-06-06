@@ -46,6 +46,8 @@ public class EITDecoder implements PSIDecoder {
         int lastTableId = payload.get() & 0xff;
         while (payload.position() < payload.limit())
         {
+            if (payload.limit() - payload.position() < 2)
+                return;
             int eventId = payload.getShort() & 0xffff;
             Date startTime = DvbTimeConverter.parseTime(payload);
             if (startTime == null)
@@ -79,7 +81,7 @@ public class EITDecoder implements PSIDecoder {
                     //Der ergibt keinen Sinn in einer EIT... aber ist das korrekt?
                     return;
                 }
-                if (descriptorId == 0x6c || descriptorId == 0x51 || descriptorId == 0x46 || descriptorId == 0x6d || descriptorId == 0x73 || descriptorId == 0x44 || descriptorId == 0x72 ||descriptorId == 0x6e || descriptorId == 0x74 || descriptorId == 0x67)
+                if (descriptorId == 0x6c || descriptorId == 0x51 || descriptorId == 0x46 || descriptorId == 0x6d || descriptorId == 0x73 || descriptorId == 0x44 || descriptorId == 0x72 ||descriptorId == 0x6e || descriptorId == 0x74 || descriptorId == 0x67 || descriptorId == 0x63 || descriptorId == 0x73)
                 {
                     //Ist laut ETSI 300468, Seite 39 nicht erlaubt
                     return;
