@@ -60,10 +60,18 @@ public final class DvbTimeConverter
         return new String(hexChars);
     }
 
-    public static int timeOffsetInJavaTime(@NotNull ByteBuffer payload)
+    @Nullable
+    public static Integer timeOffsetInJavaTime(@NotNull ByteBuffer payload)
     {
-        int hours = Integer.parseInt(singleByteToHex(payload.get()));
-        int minutes = Integer.parseInt(singleByteToHex(payload.get()));
+        String hourString = singleByteToHex(payload.get());
+        if (hourString.contains("A") || hourString.contains("B") || hourString.contains("C") || hourString.contains("D") || hourString.contains("E") || hourString.contains("F"))
+            return null;
+        int hours = Integer.parseInt(hourString);
+
+        String minuteString = singleByteToHex(payload.get());
+        if (minuteString.contains("A") || minuteString.contains("B") || minuteString.contains("C") || minuteString.contains("D") || minuteString.contains("E") || minuteString.contains("F"))
+            return null;
+        int minutes = Integer.parseInt(minuteString);
 
         int result = hours * 3600;
         result += minutes * 60;

@@ -74,7 +74,7 @@ public class NITDecoder implements PSIDecoder {
             while (transportDescriptorsRemain > 0)
             {
                 int tDescriptorId = payload.get() & 0xff;
-                if (tDescriptorId == 0x63)
+                if (tDescriptorId == 0x63 || tDescriptorId == 0x67)
                     return;
                 int tDescriptorLen = payload.get() & 0xff;
                 transportDescriptorsRemain -= 2;

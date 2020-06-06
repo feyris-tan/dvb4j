@@ -95,6 +95,7 @@ public class DescriptorDecoder
         attachDescriptorType(TvAnywhereIdDescriptor.class);
         attachDescriptorType(DefaultAuthorityDescriptor.class);
         attachDescriptorType(AnnouncementSupportDescriptor.class);
+        attachDescriptorType(MvcOperationPointDescriptor.class);
     }
 
     private Descriptor[] descriptors;

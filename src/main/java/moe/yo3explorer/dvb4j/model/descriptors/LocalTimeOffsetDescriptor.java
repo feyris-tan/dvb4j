@@ -36,7 +36,9 @@ public class LocalTimeOffsetDescriptor implements Descriptor {
 
             boolean localTimeOffsetPolariyNegative = (regionFlags & 0x01) != 0;
 
-            int localTimeOffset = DvbTimeConverter.timeOffsetInJavaTime(wrap);
+            Integer localTimeOffset = DvbTimeConverter.timeOffsetInJavaTime(wrap);
+            if (localTimeOffset == null)
+                return;
             Date timeOfChange = DvbTimeConverter.parseTime(wrap);
             int nextTimeOffset = DvbTimeConverter.timeOffsetInJavaTime(wrap);
 
