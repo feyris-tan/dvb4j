@@ -18,7 +18,8 @@ public class ApplicationSignalingDescriptor implements Descriptor {
     public void readFrom(byte[] buffer) {
         applicationTypeList = new ArrayList<>();
         ByteBuffer wrap = ByteBuffer.wrap(buffer);
-        while (wrap.position() < wrap.limit())
+        int limit = buffer.length / 3;
+        for (int i = 0; i < limit; i++)
         {
             int applicationType = wrap.getShort() & 0x7FFF;
             int versionNumber = wrap.get() & 0x1f;

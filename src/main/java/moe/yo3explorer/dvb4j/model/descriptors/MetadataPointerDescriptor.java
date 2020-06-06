@@ -64,6 +64,8 @@ public class MetadataPointerDescriptor implements Descriptor {
 
         if (mpegCarriage == MpegCarriage.PROGRAM_STREAM || mpegCarriage == MpegCarriage.NONE)
         {
+            if (wrap.limit() == wrap.position())
+                return;
             programNumber = wrap.get() & 0xffff;
         }
 

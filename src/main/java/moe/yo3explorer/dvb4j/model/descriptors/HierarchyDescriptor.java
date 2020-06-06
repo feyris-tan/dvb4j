@@ -23,6 +23,9 @@ public class HierarchyDescriptor implements Descriptor {
 
     @Override
     public void readFrom(byte[] buffer) {
+        if (buffer.length < 4)
+            return;
+
         ByteBuffer wrap = ByteBuffer.wrap(buffer);
         byte flags = wrap.get();
 
