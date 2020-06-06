@@ -22,6 +22,8 @@ public class ServiceListDescriptor implements Descriptor
         ByteBuffer wrap = ByteBuffer.wrap(buffer);
         for (; wrap.limit() > wrap.position();)
         {
+            if (wrap.limit() - wrap.position() < 3)
+                return;
             int serviceId = wrap.getShort() & 0xffff;
             byte serviceType = wrap.get();
             ServiceListEntry serviceListEntry = new ServiceListEntry(serviceId,serviceType);

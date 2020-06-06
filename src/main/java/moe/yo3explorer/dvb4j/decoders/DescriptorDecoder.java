@@ -101,6 +101,7 @@ public class DescriptorDecoder
         attachDescriptorType(Mpeg4TextDescriptor.class);
         attachDescriptorType(FlexMuxTimingDescriptor.class);
         attachDescriptorType(SLDescriptor.class);
+        attachDescriptorType(ContentLabelingDescriptor.class);
     }
 
     private Descriptor[] descriptors;
