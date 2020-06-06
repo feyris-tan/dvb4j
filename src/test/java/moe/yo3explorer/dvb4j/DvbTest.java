@@ -1,5 +1,6 @@
 package moe.yo3explorer.dvb4j;
 
+import moe.yo3explorer.dvb4j.decoders.DescriptorDecoder;
 import moe.yo3explorer.dvb4j.model.*;
 import moe.yo3explorer.dvb4j.model.descriptors.CaDescriptor;
 import moe.yo3explorer.dvb4j.model.descriptors.ExtendedEventDescriptor;
@@ -84,6 +85,9 @@ public class DvbTest implements DvbReceiver {
 
     @Override
     public void onScheduledEvent(@NotNull EITEvent eitEvent) {
+        ShortEventDescriptor descriptorFromList = DescriptorDecoder.getDescriptorFromList(eitEvent.getDescriptorList(), ShortEventDescriptor.class);
+        ExtendedEventDescriptor extendedEvent = DescriptorDecoder.getDescriptorFromList(eitEvent.getDescriptorList(), ExtendedEventDescriptor.class);
+
         Optional<String> firstShort = eitEvent.getDescriptorList().stream().filter(x -> x.getTag() == 0x4D).map(x -> ((ShortEventDescriptor) x).getEventName()).findFirst();
         String name = firstShort.orElse(null);
 

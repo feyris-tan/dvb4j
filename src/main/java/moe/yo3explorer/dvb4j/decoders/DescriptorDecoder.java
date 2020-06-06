@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class DescriptorDecoder
@@ -132,7 +133,10 @@ public class DescriptorDecoder
     public static <T extends Descriptor> T getDescriptorFromList(@NotNull List<Descriptor> list, Class<T> descriptorType)
     {
         int tag = getInstance().createInstance(descriptorType).getTag();
-        Optional<T> first = list.stream().filter(x -> x.getTag() == tag).map(x -> (T)x).findFirst();
+        Optional<T> first = list.stream()
+                .filter(Objects::nonNull)
+                .filter(x -> x.getTag() == tag)
+                .map(x -> (T)x).findFirst();
         return first.orElse(null);
     }
 
