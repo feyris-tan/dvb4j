@@ -1,7 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.MultilingualComponent;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.MultilingualComponent;
 import moe.yo3explorer.dvb4j.text.UsedCharsets;
 
 import java.nio.ByteBuffer;

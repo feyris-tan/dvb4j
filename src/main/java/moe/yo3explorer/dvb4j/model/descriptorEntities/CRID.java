@@ -1,4 +1,4 @@
-package moe.yo3explorer.dvb4j.model;
+package moe.yo3explorer.dvb4j.model.descriptorEntities;
 
 public class CRID {
     private final int cridType;

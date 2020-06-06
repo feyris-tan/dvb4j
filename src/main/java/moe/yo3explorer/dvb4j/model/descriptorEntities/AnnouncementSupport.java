@@ -1,4 +1,4 @@
-package moe.yo3explorer.dvb4j.model;
+package moe.yo3explorer.dvb4j.model.descriptorEntities;
 
 import moe.yo3explorer.dvb4j.model.enums.AnnouncementType;
 import moe.yo3explorer.dvb4j.model.enums.ReferenceType;

@@ -1,7 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.TeletextPageMetadata;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.TeletextPageMetadata;
 import moe.yo3explorer.dvb4j.model.enums.TeletextType;
 
 import java.nio.ByteBuffer;

@@ -1,8 +1,8 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
-import moe.yo3explorer.dvb4j.model.AnnouncementSupport;
-import moe.yo3explorer.dvb4j.model.AnnouncementSupportIndicator;
-import moe.yo3explorer.dvb4j.model.AnnouncementSupportOnDifferentStream;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.AnnouncementSupport;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.AnnouncementSupportIndicator;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.AnnouncementSupportOnDifferentStream;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.enums.AnnouncementType;
 import moe.yo3explorer.dvb4j.model.enums.ReferenceType;

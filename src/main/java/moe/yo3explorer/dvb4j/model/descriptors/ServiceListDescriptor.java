@@ -1,7 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.ServiceListEntry;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.ServiceListEntry;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;

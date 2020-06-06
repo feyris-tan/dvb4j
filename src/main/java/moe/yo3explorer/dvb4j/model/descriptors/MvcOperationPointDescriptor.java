@@ -1,8 +1,8 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.MvcOperationLevel;
-import moe.yo3explorer.dvb4j.model.OperationPoint;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.MvcOperationLevel;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.OperationPoint;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;

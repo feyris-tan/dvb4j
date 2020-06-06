@@ -1,7 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.SubtitlingDescriptorEntry;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.SubtitlingDescriptorEntry;
 import moe.yo3explorer.dvb4j.model.enums.ComponentType;
 
 import java.nio.ByteBuffer;

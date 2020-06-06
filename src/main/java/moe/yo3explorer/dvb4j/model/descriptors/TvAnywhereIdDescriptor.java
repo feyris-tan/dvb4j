@@ -1,7 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.TvAnywhereId;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.TvAnywhereId;
 import moe.yo3explorer.dvb4j.model.enums.TvAnywhereRunningStatus;
 
 import java.nio.ByteBuffer;

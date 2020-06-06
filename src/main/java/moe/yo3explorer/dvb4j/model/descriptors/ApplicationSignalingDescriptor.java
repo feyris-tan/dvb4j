@@ -1,6 +1,6 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
-import moe.yo3explorer.dvb4j.model.ApplicationType;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.ApplicationType;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 
 import java.nio.ByteBuffer;

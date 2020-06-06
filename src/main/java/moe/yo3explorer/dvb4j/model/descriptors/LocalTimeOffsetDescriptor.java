@@ -2,7 +2,7 @@ package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.DvbTimeConverter;
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.LocalTimeOffset;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.LocalTimeOffset;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;

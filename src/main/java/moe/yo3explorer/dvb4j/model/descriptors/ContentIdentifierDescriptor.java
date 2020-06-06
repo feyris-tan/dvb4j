@@ -1,6 +1,6 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
-import moe.yo3explorer.dvb4j.model.CRID;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.CRID;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 
 import java.nio.ByteBuffer;

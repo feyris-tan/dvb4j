@@ -1,7 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.FieldParityAndLineOffset;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.FieldParityAndLineOffset;
 
 import java.nio.ByteBuffer;
 import java.util.Collections;

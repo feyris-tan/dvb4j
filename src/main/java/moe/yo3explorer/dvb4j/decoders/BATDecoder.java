@@ -4,7 +4,7 @@ import moe.yo3explorer.dvb4j.DvbReceiver;
 import moe.yo3explorer.dvb4j.PsiSection;
 import moe.yo3explorer.dvb4j.model.BATEntry;
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.ServiceListEntry;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.ServiceListEntry;
 import moe.yo3explorer.dvb4j.model.descriptors.ServiceListDescriptor;
 import org.jetbrains.annotations.NotNull;
 

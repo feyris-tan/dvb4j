@@ -1,6 +1,6 @@
 package moe.yo3explorer.dvb4j.model.extendedDescriptors;
 
-import moe.yo3explorer.dvb4j.model.AudioPreselection;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.AudioPreselection;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.model.enums.AudioRenderingIndication;
 

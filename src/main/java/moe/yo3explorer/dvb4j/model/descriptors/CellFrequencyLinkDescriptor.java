@@ -1,8 +1,8 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
-import moe.yo3explorer.dvb4j.model.Cell;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.Cell;
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.Subcell;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.Subcell;
 
 import java.nio.ByteBuffer;
 import java.util.LinkedList;

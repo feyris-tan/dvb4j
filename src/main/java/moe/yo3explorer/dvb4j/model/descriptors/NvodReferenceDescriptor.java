@@ -1,7 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.NvodPointer;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.NvodPointer;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.ByteBuffer;

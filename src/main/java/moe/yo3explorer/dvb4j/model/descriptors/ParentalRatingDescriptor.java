@@ -1,7 +1,7 @@
 package moe.yo3explorer.dvb4j.model.descriptors;
 
 import moe.yo3explorer.dvb4j.model.Descriptor;
-import moe.yo3explorer.dvb4j.model.ParentalRating;
+import moe.yo3explorer.dvb4j.model.descriptorEntities.ParentalRating;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;
