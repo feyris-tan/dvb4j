@@ -143,6 +143,11 @@ public class DvbPacket
             Long dtsNextAccessUnit = null;
             if (seamlessSpliceFlag)
             {
+                if (buffer.limit() == buffer.position())
+                {
+                    tei = true;
+                    return 1;
+                }
                 byte spliceRawA = buffer.get();
                 spliceType = spliceRawA & 0xf0;
 
