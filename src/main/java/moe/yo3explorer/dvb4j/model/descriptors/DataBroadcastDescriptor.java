@@ -42,6 +42,8 @@ public class DataBroadcastDescriptor implements Descriptor {
         iso639languageCode = new String(langcodeBuffer, StandardCharsets.US_ASCII);
 
         int textLength = wrap.get() & 0xff;
+        if (wrap.limit() - wrap.position() < textLength)
+            return;
         byte[] textBuffer = new byte[textLength];
         wrap.get(textBuffer);
         text = new String(textBuffer, UsedCharsets.DVB);
