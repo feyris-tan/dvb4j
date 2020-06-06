@@ -100,6 +100,7 @@ public class DescriptorDecoder
         attachDescriptorType(CellFrequencyLinkDescriptor.class);
         attachDescriptorType(Mpeg4TextDescriptor.class);
         attachDescriptorType(FlexMuxTimingDescriptor.class);
+        attachDescriptorType(SLDescriptor.class);
     }
 
     private Descriptor[] descriptors;

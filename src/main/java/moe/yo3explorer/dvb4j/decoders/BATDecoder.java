@@ -48,6 +48,11 @@ public class BATDecoder implements PSIDecoder {
                 //Kann nicht in einer BAT vorkommen.
                 return;
             }
+            if (descriptorId == 41)
+            {
+                //Nicht sicher, ob dies in einer BAT vorkommen kann.
+                return;
+            }
 
             if (descriptorsRemain >= descriptorLength)
             {
