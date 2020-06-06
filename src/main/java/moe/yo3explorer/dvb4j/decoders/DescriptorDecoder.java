@@ -96,6 +96,7 @@ public class DescriptorDecoder
         attachDescriptorType(DefaultAuthorityDescriptor.class);
         attachDescriptorType(AnnouncementSupportDescriptor.class);
         attachDescriptorType(MvcOperationPointDescriptor.class);
+        attachDescriptorType(Mpeg4AudioExtensionDescriptor.class);
     }
 
     private Descriptor[] descriptors;
@@ -192,8 +193,11 @@ public class DescriptorDecoder
         }
     }
 
-    public Descriptor decode(int descriptorId, int tableId, byte[] data)
+    public Descriptor decode(int descriptorId, int tableId, @NotNull byte[] data)
     {
+        if (data.length == 0)
+            return null;
+
         if (descriptorId > 0xff)
             throw new IllegalArgumentException("The highest possible descriptorId is 0xFF");
 
