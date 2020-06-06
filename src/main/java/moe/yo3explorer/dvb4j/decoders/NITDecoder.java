@@ -25,6 +25,9 @@ public class NITDecoder implements PSIDecoder {
 
     @Override
     public void handlePsi(@NotNull PsiSection psiSection) {
+        if (psiSection.getRawDataLength() < 8)
+            return;
+
         int psiTableId = psiSection.getTableId();
 
         List<Descriptor> networkDescriptors = new ArrayList<>();
