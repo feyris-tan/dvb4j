@@ -77,7 +77,7 @@ public class EITDecoder implements PSIDecoder {
                     //Der ergibt keinen Sinn in einer EIT... aber ist das korrekt?
                     return;
                 }
-                if (descriptorId == 0x6c || descriptorId == 0x51 || descriptorId == 0x46 || descriptorId == 0x6d || descriptorId == 0x73 || descriptorId == 0x44)
+                if (descriptorId == 0x6c || descriptorId == 0x51 || descriptorId == 0x46 || descriptorId == 0x6d || descriptorId == 0x73 || descriptorId == 0x44 || descriptorId == 0x72)
                 {
                     //Ist laut ETSI 300468, Seite 39 nicht erlaubt
                     return;

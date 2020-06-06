@@ -30,3 +30,4 @@ The information needed to write this software were gathered from:
 - ETSI TS 102 809
 - Packet header from https://en.wikipedia.org/wiki/MPEG_transport_stream#Packet
 - ITU-T Rec. H.222.0 (03/2017) 
+- ETSI TS 102 323
