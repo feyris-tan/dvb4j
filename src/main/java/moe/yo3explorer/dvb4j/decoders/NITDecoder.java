@@ -87,7 +87,11 @@ public class NITDecoder implements PSIDecoder {
                 tsLoopRemain -= tDescriptorLen;
             }
 
-            Optional<SatelliteDeliverySystemDescriptor> first = tsDescriptors.stream().filter(x -> x.getTag() == 0x43).map(x -> (SatelliteDeliverySystemDescriptor) x).findFirst();
+            Optional<SatelliteDeliverySystemDescriptor> first = tsDescriptors.stream()
+                    .filter(Objects::nonNull)
+                    .filter(x -> x.getTag() == 0x43)
+                    .map(x -> (SatelliteDeliverySystemDescriptor) x)
+                    .findFirst();
             if (first.isPresent())
             {
                 SatelliteDeliverySystemDescriptor satelliteDeliverySystemDescriptor = first.get();
