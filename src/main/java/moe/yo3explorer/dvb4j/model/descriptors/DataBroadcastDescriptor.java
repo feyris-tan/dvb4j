@@ -3,6 +3,7 @@ package moe.yo3explorer.dvb4j.model.descriptors;
 import moe.yo3explorer.dvb4j.model.Descriptor;
 import moe.yo3explorer.dvb4j.text.DvbCharset;
 import moe.yo3explorer.dvb4j.text.UsedCharsets;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -26,8 +27,15 @@ public class DataBroadcastDescriptor implements Descriptor {
         componentTag = wrap.get() & 0xff;
 
         int selectorLength = wrap.get() & 0xff;
+
+        if (wrap.limit() - wrap.position() < selectorLength)
+            return;
+
         selector = new byte[selectorLength];
         wrap.get(selector);
+
+        if (wrap.limit() - wrap.position() < 4)
+            return;
 
         byte[] langcodeBuffer = new byte[3];
         wrap.get(langcodeBuffer);
