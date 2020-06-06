@@ -93,6 +93,7 @@ public class DescriptorDecoder
         attachDescriptorType(HierarchyDescriptor.class);
         attachDescriptorType(SvcExtensionDescriptor.class);
         attachDescriptorType(TvAnywhereIdDescriptor.class);
+        attachDescriptorType(DefaultAuthorityDescriptor.class);
     }
 
     private Descriptor[] descriptors;
