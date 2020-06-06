@@ -206,12 +206,20 @@ public class DescriptorDecoder
         if (descriptorId > 0xff)
             throw new IllegalArgumentException("The highest possible descriptorId is 0xFF");
 
+        if (descriptorId >= 57 && descriptorId <= 62)
+        {
+            Iso13818OneReserved iso13818OneReserved = new Iso13818OneReserved(descriptorId);
+            iso13818OneReserved.readFrom(data);
+            return iso13818OneReserved;
+        }
+
         if (descriptorId >= 0x80 && descriptorId <= 0xFE)
         {
             UserDefinedDescriptor userDefinedDescriptor = new UserDefinedDescriptor(descriptorId);
             userDefinedDescriptor.readFrom(data);
             return userDefinedDescriptor;
         }
+
 
         if (descriptors[descriptorId] != null)
         {
