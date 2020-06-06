@@ -89,6 +89,7 @@ public class DescriptorDecoder
         attachDescriptorType(StereoscopicProgramDescriptor.class);
         attachDescriptorType(MetadataPointerDescriptor.class);
         attachDescriptorType(J2KVideoDescriptor.class);
+        attachDescriptorType(ContentIdentifierDescriptor.class);
     }
 
     private Descriptor[] descriptors;
