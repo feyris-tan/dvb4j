@@ -27,6 +27,8 @@ public class ServiceDescriptor implements Descriptor {
         serviceType = decodeServiceType(rawServiceType);
 
         int serviceProviderNameLength = wrap.get() & 0xff;
+        if (serviceProviderNameLength > (wrap.limit() - wrap.position()))
+            return;
         byte[] serviceProviderNameRaw = new byte[serviceProviderNameLength];
         wrap.get(serviceProviderNameRaw);
         this.serviceProviderName = new String(serviceProviderNameRaw, StandardCharsets.US_ASCII);
