@@ -97,6 +97,7 @@ public class DescriptorDecoder
         attachDescriptorType(AnnouncementSupportDescriptor.class);
         attachDescriptorType(MvcOperationPointDescriptor.class);
         attachDescriptorType(Mpeg4AudioExtensionDescriptor.class);
+        attachDescriptorType(CellFrequencyLinkDescriptor.class);
     }
 
     private Descriptor[] descriptors;
