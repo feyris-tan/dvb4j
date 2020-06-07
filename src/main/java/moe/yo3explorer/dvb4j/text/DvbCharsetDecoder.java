@@ -89,7 +89,10 @@ public class DvbCharsetDecoder extends CharsetDecoder {
                     case 0x15: actualCharset = StandardCharsets.UTF_8; continue;
                     case 0x1f:
                         throw new RuntimeException("not implemented, see encoding_type_id ETSI TS 101 162 ");
-                    default: throw new RuntimeException(String.format("reserved charset 0x%02X",dirtyBuffer[0]));
+                    default:
+                        System.out.println(String.format("reserved charset 0x%02X - falling back to UTF-8!",dirtyBuffer[0]));
+                        actualCharset = StandardCharsets.UTF_8;
+                        continue;
                 }
             }
 
