@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 
 public class BATDecoder implements PSIDecoder {
@@ -91,7 +92,12 @@ public class BATDecoder implements PSIDecoder {
                 }
             }
 
-            Optional<ArrayList<ServiceListEntry>> firstServiceList = tsDescriptors.stream().filter(x -> x.getTag() == 0x41).map(x -> ((ServiceListDescriptor) x).getServices()).findFirst();
+            Optional<ArrayList<ServiceListEntry>> firstServiceList = tsDescriptors.stream()
+                    .filter(Objects::nonNull)
+                    .filter(x -> x.getTag() == 0x41)
+                    .map(x -> ((ServiceListDescriptor) x).getServices())
+                    .findFirst();
+
             if (firstServiceList.isPresent())
             {
                 ArrayList<ServiceListEntry> serviceListEntries = firstServiceList.get();
