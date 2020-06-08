@@ -143,7 +143,7 @@ public class DvbPacket
             Long dtsNextAccessUnit = null;
             if (seamlessSpliceFlag)
             {
-                if (buffer.limit() == buffer.position())
+                if (buffer.limit() - buffer.position() < 5)
                 {
                     tei = true;
                     return 1;
