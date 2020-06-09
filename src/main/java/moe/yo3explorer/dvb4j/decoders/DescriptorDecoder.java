@@ -103,6 +103,7 @@ public class DescriptorDecoder
         attachDescriptorType(FlexMuxTimingDescriptor.class);
         attachDescriptorType(SLDescriptor.class);
         attachDescriptorType(ContentLabelingDescriptor.class);
+        attachDescriptorType(MetadataStdDescriptor.class);
     }
 
     private Descriptor[] descriptors;
